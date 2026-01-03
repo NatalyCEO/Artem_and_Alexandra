@@ -126,7 +126,7 @@
             margin: 15px 0;
             font-size: 3rem;
             color: white;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
         }
         
         .date {
@@ -888,31 +888,40 @@
     </footer>
     
     <script>
-        // Генерация календаря на август 2026
+        // Генерация календаря на август 2026 (22 августа - суббота)
         function generateCalendar() {
             const calendarDays = document.getElementById('calendar-days');
-            const weddingDate = new Date(2026, 7, 22); // 22 августа 2026 (месяцы 0-11)
             
-            // Август 2026 начинается с субботы (0 - воскресенье, 1 - понедельник...)
-            // 1 августа 2026 - суббота (6)
-            const firstDayOfMonth = 6; // Суббота
+            // Август 2026: 1 августа - суббота (22 августа тоже будет суббота)
+            // В календаре неделя начинается с понедельника
+            // Пустые ячейки перед 1 числом: 1 августа - суббота, значит пустых ячеек = 5 (пн-пт)
+            
             const daysInMonth = 31;
+            const firstDayOfMonth = 6; // 1 августа 2026 = суббота (6, если 0=воскресенье)
             
             let calendarHTML = '';
             
-            // Пустые ячейки для дней до начала месяца
-            for (let i = 0; i < firstDayOfMonth; i++) {
-                // Если первый день месяца - суббота (6), нам нужны ячейки с пн-пт (0-4)
-                // Но в нашем календаре неделя начинается с понедельника
-                // Для субботы как первого дня: пустых ячеек = 5 (пн-пт)
-                const adjustedIndex = (i + 1) % 7; // Преобразуем для календаря, начинающегося с понедельника
+            // Пустые ячейки для дней до 1 августа (пн-пт = 5 ячеек)
+            // В нашем календаре неделя начинается с понедельника
+            for (let i = 0; i < 5; i++) {
                 calendarHTML += `<div class="calendar-day empty"></div>`;
             }
             
-            // Ячейки с днями месяца
+            // Ячейки с днями месяца (1-31 августа)
             for (let day = 1; day <= daysInMonth; day++) {
+                // Определяем день недели для каждого числа
+                // 1 августа = суббота (6), 2 = воскресенье (0), 3 = понедельник (1) и т.д.
+                const dayOfWeek = (firstDayOfMonth + day - 1) % 7;
+                const isSaturday = dayOfWeek === 6;
                 const isWeddingDay = day === 22;
-                const dayClass = isWeddingDay ? 'calendar-day wedding-day' : 'calendar-day';
+                
+                let dayClass = 'calendar-day';
+                if (isWeddingDay) {
+                    dayClass += ' wedding-day';
+                } else if (isSaturday) {
+                    dayClass += ' saturday';
+                }
+                
                 calendarHTML += `<div class="${dayClass}">${day}</div>`;
             }
             
@@ -982,6 +991,10 @@
             // Активация анимации при скролле
             window.addEventListener('scroll', checkScroll);
             checkScroll(); // Проверить сразу при загрузке
+            
+            // Проверяем, что 22 августа действительно суббота
+            const testDate = new Date(2026, 7, 22); // Август = 7 (0-11)
+            console.log('22 августа 2026 день недели:', testDate.getDay()); // 6 = суббота
         });
     </script>
 </body>
