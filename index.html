@@ -54,8 +54,14 @@
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         .animate-fade-in {
@@ -69,6 +75,10 @@
         
         .animate-pulse {
             animation: pulse 2s infinite;
+        }
+        
+        .animate-heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
         
         /* Хедер с фото */
@@ -95,28 +105,33 @@
             max-width: 800px;
         }
         
-        .names {
+        .names-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .name {
             font-size: 4.5rem;
             font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-family: 'Playfair Display', Georgia, serif;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1;
         }
         
-        .ampersand {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5rem;
-            margin: 0 20px;
-            display: inline-block;
-            color: var(--color5);
-            text-shadow: none;
+        .heart-divider {
+            margin: 15px 0;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
         
         .date {
             font-size: 1.8rem;
-            margin-top: 20px;
+            margin-top: 30px;
             letter-spacing: 1px;
             font-weight: 300;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -444,7 +459,7 @@
             box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
         }
         
-        /* Футер с обратным отсчетом */
+        /* Футер с обратным отсчетом и контактами */
         .footer {
             position: relative;
             padding: 100px 20px 60px;
@@ -546,12 +561,13 @@
         
         /* Адаптивность */
         @media (max-width: 768px) {
-            .names {
-                font-size: 3rem;
+            .name {
+                font-size: 3.5rem;
             }
             
-            .ampersand {
-                font-size: 3.5rem;
+            .heart-divider {
+                font-size: 2.5rem;
+                margin: 10px 0;
             }
             
             .date {
@@ -581,18 +597,19 @@
         }
         
         @media (max-width: 480px) {
-            .names {
-                font-size: 2.2rem;
+            .name {
+                font-size: 2.5rem;
                 letter-spacing: 1px;
             }
             
-            .ampersand {
-                font-size: 2.5rem;
-                margin: 0 10px;
+            .heart-divider {
+                font-size: 2rem;
+                margin: 8px 0;
             }
             
             .date {
                 font-size: 1.2rem;
+                margin-top: 20px;
             }
             
             .countdown {
@@ -628,6 +645,12 @@
         .visible {
             opacity: 1;
         }
+        
+        /* Стиль для белого сердца с тенью */
+        .white-heart {
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
@@ -635,8 +658,10 @@
     <!-- Шапка с фото и именами -->
     <header class="header">
         <div class="header-content">
-            <div class="names animate-fade-in">
-                Артём<span class="ampersand animate-pulse">&</span>Александра
+            <div class="names-container animate-fade-in">
+                <div class="name">Артём</div>
+                <div class="heart-divider animate-heartbeat">🤍</div>
+                <div class="name">Александра</div>
             </div>
             <div class="date animate-fade-in" style="animation-delay: 0.3s;">
                 22 августа 2026 года
