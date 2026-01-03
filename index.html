@@ -873,13 +873,126 @@
             font-size: 1.5rem;
             margin: 0 5px;
         }
-        
+
         .hidden {
             opacity: 0;
         }
-        
+
         .visible {
             opacity: 1;
+        }
+
+        /* Модальное окно благодарности */
+        .thank-you-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .thank-you-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thank-you-content {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: modalAppear 0.5s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--color1), var(--color3), var(--color4));
+        }
+
+        @keyframes modalAppear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .thank-you-icon {
+            font-size: 4rem;
+            color: var(--color3);
+            margin-bottom: 20px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        .thank-you-title {
+            font-size: 2.5rem;
+            color: var(--color8);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .thank-you-text {
+            font-size: 1.1rem;
+            color: var(--color10);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .thank-you-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .thank-you-heart {
+            color: var(--color3);
+            font-size: 1.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .thank-you-heart:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .thank-you-heart:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .thank-you-close {
+            background-color: var(--heart-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(195, 145, 134, 0.3);
+        }
+
+        .thank-you-close:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
+            background-color: #b0827a;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -1183,7 +1296,27 @@
             </div>
         </div>
     </footer>
-    
+
+    <!-- Модальное окно благодарности -->
+    <div id="thank-you-modal" class="thank-you-modal">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="thank-you-title">Спасибо за ответ!</h2>
+            <p class="thank-you-text">
+                Мы рады, что вы будете с нами делить этот особенный день!<br>
+                Ваше присутствие сделает нашу свадьбу еще более счастливой.
+            </p>
+            <div class="thank-you-hearts">
+                <i class="fas fa-heart thank-you-heart"></i>
+                <i class="fas fa-heart thank-you-heart"></i>
+                <i class="fas fa-heart thank-you-heart"></i>
+            </div>
+            <button class="thank-you-close" onclick="closeThankYouModal()">Закрыть</button>
+        </div>
+    </div>
+
     <script>
         // Генерация календаря на август 2026 (22 августа - суббота)
         function generateCalendar() {
@@ -1327,14 +1460,42 @@
             });
         });
         
+        // Функция показа модального окна благодарности
+        function showThankYouModal() {
+            const modal = document.getElementById('thank-you-modal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Запретить прокрутку страницы
+        }
+
+        // Функция закрытия модального окна благодарности
+        function closeThankYouModal() {
+            const modal = document.getElementById('thank-you-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Разрешить прокрутку страницы
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('thank-you-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeThankYouModal();
+            }
+        });
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('thank-you-modal').classList.contains('show')) {
+                closeThankYouModal();
+            }
+        });
+
         // Обработка формы
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // В реальном проекте здесь был бы AJAX-запрос к серверу
-            // Для демо просто покажем сообщение
-            alert('Спасибо за ваш ответ! Мы получили ваше подтверждение и будем ждать вас на свадьбе!');
-            
+            // Для демо просто покажем модальное окно благодарности
+            showThankYouModal();
+
             // Очистка формы
             this.reset();
         });
