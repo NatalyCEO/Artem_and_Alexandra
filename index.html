@@ -26,7 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -34,7 +34,6 @@
             color: var(--color10);
             line-height: 1.6;
             overflow-x: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .container {
@@ -66,8 +65,13 @@
         }
         
         @keyframes heartGlow {
-            0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.05); }
+            0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        @keyframes heartPulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
         }
         
         .animate-fade-in {
@@ -89,6 +93,10 @@
         
         .animate-heart-glow {
             animation: heartGlow 2s ease-in-out infinite;
+        }
+        
+        .animate-heart-pulse {
+            animation: heartPulse 1.5s ease-in-out infinite;
         }
         
         /* Хедер с фото */
@@ -124,12 +132,13 @@
         
         .name {
             font-size: 4.5rem;
-            font-weight: bold;
+            font-weight: normal;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Dancing Script', cursive;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
             line-height: 1;
+            font-weight: 700;
         }
         
         .heart-divider {
@@ -148,6 +157,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             padding: 15px 0;
             display: inline-block;
+            font-family: 'Dancing Script', cursive;
         }
         
         /* Обращение к гостям */
@@ -199,6 +209,7 @@
             padding: 20px;
             border-left: 3px solid var(--color3);
             text-align: center;
+            font-family: 'Dancing Script', cursive;
         }
         
         /* Календарь и место */
@@ -263,19 +274,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3.8rem; /* Увеличенный размер */
+            font-size: 3.8rem;
             color: var(--heart-color);
-            opacity: 0.2; /* Более прозрачное */
+            opacity: 0.25;
             z-index: 1;
-            animation: heartGlow 3s ease-in-out infinite;
+            animation: heartGlow 1.5s ease-in-out infinite;
             font-weight: normal;
-            /* Увеличиваем ширину сердца */
             width: 1.5em;
             height: 1.5em;
             display: flex;
             align-items: center;
             justify-content: center;
-            letter-spacing: 0; /* Убираем лишние отступы */
+            letter-spacing: 0;
+            text-shadow: 0 0 15px rgba(195, 145, 134, 0.4);
         }
         
         .calendar-day.wedding-day span {
@@ -327,7 +338,7 @@
         .map-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
-            background-color: #b0827a; /* Немного темнее при наведении */
+            background-color: #b0827a;
         }
         
         /* Пожелания по подаркам и дрескоду */
@@ -383,6 +394,71 @@
             font-weight: 600;
         }
         
+        /* Обратный отсчет на фоне фото */
+        .countdown-section {
+            position: relative;
+            padding: 120px 20px;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .countdown-title {
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', Georgia, serif;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .countdown-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            display: block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .countdown-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-weight: 500;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
         /* Форма подтверждения */
         .form-section {
             padding: 80px 20px;
@@ -432,7 +508,6 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: var(--transition);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -503,88 +578,36 @@
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
-            background-color: #b0827a; /* Немного темнее при наведении */
+            background-color: #b0827a;
         }
         
-        /* Футер с обратным отсчетом и контактами */
+        /* Футер с контактами */
         .footer {
             position: relative;
-            padding: 100px 20px 60px;
+            padding: 80px 20px 60px;
             text-align: center;
             color: white;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .countdown-section {
-            margin-bottom: 60px;
-        }
-        
-        .countdown-title {
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-        
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            color: white;
-            border-radius: 15px;
-            padding: 25px 20px;
-            min-width: 120px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: bold;
-            display: block;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .countdown-label {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-        
-        .contacts {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: var(--color10);
         }
         
         .contacts-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
             font-family: 'Playfair Display', Georgia, serif;
         }
         
         .contact-item {
             margin-bottom: 15px;
             font-size: 1.1rem;
+            opacity: 0.9;
         }
         
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .social-icon {
@@ -630,7 +653,7 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 3rem; /* Немного меньше для мобильных */
+                font-size: 3rem;
                 width: 1.3em;
                 height: 1.3em;
             }
@@ -639,13 +662,17 @@
                 height: 40px;
             }
             
+            .countdown-title {
+                font-size: 2.2rem;
+            }
+            
             .countdown-item {
-                min-width: 90px;
-                padding: 20px 15px;
+                min-width: 110px;
+                padding: 25px 20px;
             }
             
             .countdown-number {
-                font-size: 2.2rem;
+                font-size: 2.8rem;
             }
             
             .form-container {
@@ -655,7 +682,7 @@
         
         @media (max-width: 480px) {
             .name {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
                 letter-spacing: 1px;
             }
             
@@ -679,17 +706,26 @@
                 height: 35px;
             }
             
+            .countdown-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
             .countdown {
                 gap: 10px;
             }
             
             .countdown-item {
-                min-width: 70px;
-                padding: 15px 10px;
+                min-width: 80px;
+                padding: 20px 15px;
             }
             
             .countdown-number {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.9rem;
             }
             
             .wishes-container {
@@ -712,14 +748,8 @@
         .visible {
             opacity: 1;
         }
-        
-        /* Стиль для белого сердца с тенью */
-        .white-heart {
-            color: white;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Шапка с фото и именами -->
@@ -822,6 +852,32 @@
         </div>
     </section>
     
+    <!-- Обратный отсчет на фоне фото -->
+    <section class="countdown-section">
+        <div class="container">
+            <h3 class="countdown-title">До нашей свадьбы осталось</h3>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">000</span>
+                    <span id="days-label" class="countdown-label">Дней</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span id="hours-label" class="countdown-label">Часов</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span id="minutes-label" class="countdown-label">Минут</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span id="seconds-label" class="countdown-label">Секунд</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Форма подтверждения -->
     <section class="form-section">
         <div class="container">
@@ -905,51 +961,26 @@
         </div>
     </section>
     
-    <!-- Футер с обратным отсчетом и контактами -->
+    <!-- Футер с контактами -->
     <footer class="footer">
         <div class="container">
-            <div class="countdown-section">
-                <h3 class="countdown-title">До свадьбы осталось</h3>
-                
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span id="days" class="countdown-number">000</span>
-                        <span class="countdown-label">Дней</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="hours" class="countdown-number">00</span>
-                        <span class="countdown-label">Часов</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="minutes" class="countdown-number">00</span>
-                        <span class="countdown-label">Минут</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="seconds" class="countdown-number">00</span>
-                        <span class="countdown-label">Секунд</span>
-                    </div>
-                </div>
+            <h3 class="contacts-title">Контакты</h3>
+            
+            <div class="contact-item">
+                По всем вопросам можете обращаться к нам:
+            </div>
+            <div class="contact-item">
+                Артём: +7 (XXX) XXX-XX-XX
+            </div>
+            <div class="contact-item">
+                Александра: +7 (XXX) XXX-XX-XX
             </div>
             
-            <div class="contacts">
-                <h3 class="contacts-title">Контакты</h3>
-                
-                <div class="contact-item">
-                    По всем вопросам можете обращаться к нам:
-                </div>
-                <div class="contact-item">
-                    Артём: +7 (XXX) XXX-XX-XX
-                </div>
-                <div class="contact-item">
-                    Александра: +7 (XXX) XXX-XX-XX
-                </div>
-                
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
-                </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
             </div>
         </div>
     </footer>
@@ -992,6 +1023,17 @@
             calendarDays.innerHTML = calendarHTML;
         }
         
+        // Функция для правильного склонения слов
+        function declensionNum(num, words) {
+            if (num % 10 === 1 && num % 100 !== 11) {
+                return words[0]; // один
+            } else if (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)) {
+                return words[1]; // два, три, четыре
+            } else {
+                return words[2]; // пять, шесть...
+            }
+        }
+        
         // Обратный отсчет до свадьбы
         function updateCountdown() {
             const weddingDate = new Date('August 22, 2026 15:00:00').getTime();
@@ -1003,6 +1045,10 @@
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
+                document.getElementById('days-label').textContent = 'Дней';
+                document.getElementById('hours-label').textContent = 'Часов';
+                document.getElementById('minutes-label').textContent = 'Минут';
+                document.getElementById('seconds-label').textContent = 'Секунд';
                 return;
             }
             
@@ -1015,6 +1061,12 @@
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Правильное склонение
+            document.getElementById('days-label').textContent = declensionNum(days, ['день', 'дня', 'дней']);
+            document.getElementById('hours-label').textContent = declensionNum(hours, ['час', 'часа', 'часов']);
+            document.getElementById('minutes-label').textContent = declensionNum(minutes, ['минута', 'минуты', 'минут']);
+            document.getElementById('seconds-label').textContent = declensionNum(seconds, ['секунда', 'секунды', 'секунд']);
         }
         
         // Анимация появления элементов при скролле
