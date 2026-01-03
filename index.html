@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу Артёма и Александры</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color1: #C39188; /* Основной светлый */
+            --color2: #D69F93; /* Акцентный светлый */
+            --color3: #E086AC; /* Розовый */
+            --color4: #EA0DC4; /* Яркий акцент */
+            --color5: #F7E107; /* Золотой */
+            --color6: #D4DDC4; /* Светло-зеленый */
+            --color7: #ACB493; /* Серо-зеленый */
+            --color8: #3A9478; /* Изумрудный */
+            --color9: #677482; /* Серо-синий */
+            --color10: #453F3C; /* Темный текст */
+            
+            --transition: all 0.5s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fefefe;
+            color: var(--color10);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Хедер и приветствие */
+        .header {
+            background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 50%, var(--color3) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="white" opacity="0.05" d="M0,0 L100,0 L100,100 Z" /></svg>');
+            background-size: cover;
+        }
+        
+        .title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .names {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .heart {
+            color: var(--color4);
+            display: inline-block;
+            margin: 0 15px;
+        }
+        
+        /* Основное содержимое */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--color8);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--color3), var(--color4));
+        }
+        
+        /* Блок с датой и местом */
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .detail-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .detail-icon {
+            font-size: 2.5rem;
+            color: var(--color4);
+            margin-bottom: 20px;
+        }
+        
+        .detail-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--color8);
+        }
+        
+        .detail-text {
+            font-size: 1.1rem;
+            color: var(--color10);
+        }
+        
+        /* Блок с обратным отсчетом */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, var(--color1), var(--color2));
+            color: white;
+            border-radius: 10px;
+            padding: 20px 15px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Форма подтверждения */
+        .form-section {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            padding: 80px 20px;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color8);
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color3);
+            box-shadow: 0 0 0 3px rgba(224, 134, 172, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .radio-input {
+            margin-right: 8px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, var(--color3), var(--color4));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
+        }
+        
+        /* Футер */
+        .footer {
+            background: var(--color10);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            color: var(--color5);
+            transform: translateY(-5px);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .names {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .detail-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 15px 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .names {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Дополнительные декоративные элементы */
+        .decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .flower {
+            color: var(--color3);
+            opacity: 0.1;
+            font-size: 3rem;
+        }
+        
+        .hidden {
+            opacity: 0;
+        }
+        
+        .visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные элементы -->
+    <div class="decoration" style="top: 10%; left: 5%;">
+        <i class="fas fa-heart flower animate-float"></i>
+    </div>
+    <div class="decoration" style="top: 15%; right: 8%;">
+        <i class="fas fa-heart flower animate-float" style="animation-delay: 0.5s;"></i>
+    </div>
+    <div class="decoration" style="bottom: 20%; left: 10%;">
+        <i class="fas fa-heart flower animate-float" style="animation-delay: 1s;"></i>
+    </div>
+    
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title animate-fade-in">Приглашение на свадьбу</h1>
+            <p class="subtitle animate-fade-in" style="animation-delay: 0.2s;">С великой радостью приглашаем вас разделить с нами самый важный день в нашей жизни</p>
+            <div class="names animate-fade-in" style="animation-delay: 0.4s;">
+                Артём <span class="heart animate-pulse"><i class="fas fa-heart"></i></span> Александра
+            </div>
+            <p class="subtitle animate-fade-in" style="animation-delay: 0.6s;">22 августа 2026 года</p>
+        </div>
+    </header>
+    
+    <!-- Секция с деталями -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Детали свадьбы</h2>
+            <div class="details">
+                <div class="detail-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="detail-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="detail-title">Дата и время</h3>
+                    <p class="detail-text">22 августа 2026 года</p>
+                    <p class="detail-text">Сбор гостей в 15:00</p>
+                    <p class="detail-text">Церемония в 16:00</p>
+                </div>
+                
+                <div class="detail-card animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="detail-title">Место проведения</h3>
+                    <p class="detail-text">Загородный банкетный комплекс «Лесной»</p>
+                    <p class="detail-text">Адрес: Каштак, ул. Детский санаторий, дом 9</p>
+                </div>
+                
+                <div class="detail-card animate-fade-in" style="animation-delay: 0.6s;">
+                    <div class="detail-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="detail-title">Дресс-код</h3>
+                    <p class="detail-text">Вечерние наряды</p>
+                    <p class="detail-text">Светлые и пастельные тона</p>
+                    <p class="detail-text">Удобная обувь для прогулок на природе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция с обратным отсчетом -->
+    <section class="section" style="background: linear-gradient(135deg, var(--color6) 0%, var(--color7) 100%);">
+        <div class="container">
+            <h2 class="section-title">До свадьбы осталось</h2>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">000</span>
+                    <span class="countdown-label">Дней</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Часов</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Минут</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Секунд</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Форма подтверждения -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container animate-fade-in">
+                <h2 class="section-title">Подтвердите присутствие</h2>
+                <p style="margin-bottom: 30px; color: var(--color9);">Пожалуйста, заполните форму до 1 августа 2026 года</p>
+                
+                <form id="rsvp-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Ваше имя и фамилия *</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Номер телефона *</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Электронная почта</label>
+                        <input type="email" id="email" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Вы придёте на свадьбу? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="yes" class="radio-input" required>
+                                <span>Да, с удовольствием!</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="no" class="radio-input" required>
+                                <span>К сожалению, не смогу</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="guests">Количество гостей (включая вас) *</label>
+                        <select id="guests" class="form-select" required>
+                            <option value="" disabled selected>Выберите количество</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="food">Предпочтения по еде</label>
+                        <textarea id="food" class="form-textarea" placeholder="Укажите, если у вас есть пищевые ограничения или аллергии..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Ваши пожелания молодоженам</label>
+                        <textarea id="message" class="form-textarea" placeholder="Напишите ваши пожелания или поздравления..."></textarea>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Отправить ответ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">С нетерпением ждём этого дня и надеемся разделить его с вами!</p>
+            <p class="footer-text">С любовью, Артём и Александра</p>
+            <p class="footer-text">По всем вопросам: +7 (XXX) XXX-XX-XX</p>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Обратный отсчет до свадьбы
+        function updateCountdown() {
+            const weddingDate = new Date('August 22, 2026 15:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+            
+            if (timeLeft < 0) {
+                document.getElementById('days').textContent = '000';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(3, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Анимация появления элементов при скролле
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                
+                if (position < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Обработка формы
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // В реальном проекте здесь был бы AJAX-запрос к серверу
+            // Для демо просто покажем сообщение
+            alert('Спасибо за ваш ответ! Мы получили ваше подтверждение и будем ждать вас на свадьбе!');
+            
+            // Очистка формы
+            this.reset();
+        });
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Запуск обратного отсчета
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Активация анимации при скролле
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Проверить сразу при загрузке
+        });
+    </script>
+</body>
+</html>
