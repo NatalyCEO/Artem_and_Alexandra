@@ -17,6 +17,7 @@
             --color8: #3A9478; /* Изумрудный */
             --color9: #677482; /* Серо-синий */
             --color10: #453F3C; /* Темный текст */
+            --heart-color: #C39186; /* Цвет для сердечка в календаре */
             
             --transition: all 0.5s ease;
         }
@@ -234,14 +235,23 @@
             border-radius: 50%;
             transition: var(--transition);
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
         }
         
         .calendar-day.wedding-day {
-            background: linear-gradient(135deg, var(--color3), var(--color4));
-            color: white;
+            color: var(--heart-color);
             font-weight: bold;
             transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(224, 134, 172, 0.3);
+            position: relative;
+        }
+        
+        .calendar-day.wedding-day::before {
+            content: "♥";
+            font-size: 1.5rem;
+            display: block;
         }
         
         .calendar-day.empty {
@@ -268,7 +278,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(to right, var(--color3), var(--color4));
+            background-color: var(--heart-color);
             color: white;
             border: none;
             border-radius: 50px;
@@ -278,11 +288,13 @@
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
+            box-shadow: 0 5px 15px rgba(195, 145, 134, 0.3);
         }
         
         .map-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
+            box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
+            background-color: #b0827a; /* Немного темнее при наведении */
         }
         
         /* Пожелания по подаркам и дрескоду */
@@ -437,7 +449,7 @@
         }
         
         .submit-btn {
-            background: linear-gradient(to right, var(--color3), var(--color4));
+            background-color: var(--heart-color);
             color: white;
             border: none;
             border-radius: 50px;
@@ -452,11 +464,13 @@
             margin-top: 20px;
             width: 100%;
             justify-content: center;
+            box-shadow: 0 5px 15px rgba(195, 145, 134, 0.3);
         }
         
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
+            box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
+            background-color: #b0827a; /* Немного темнее при наведении */
         }
         
         /* Футер с обратным отсчетом и контактами */
@@ -897,12 +911,10 @@
             // Пустые ячейки перед 1 числом: 1 августа - суббота, значит пустых ячеек = 5 (пн-пт)
             
             const daysInMonth = 31;
-            const firstDayOfMonth = 6; // 1 августа 2026 = суббота (6, если 0=воскресенье)
             
             let calendarHTML = '';
             
             // Пустые ячейки для дней до 1 августа (пн-пт = 5 ячеек)
-            // В нашем календаре неделя начинается с понедельника
             for (let i = 0; i < 5; i++) {
                 calendarHTML += `<div class="calendar-day empty"></div>`;
             }
@@ -911,18 +923,15 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 // Определяем день недели для каждого числа
                 // 1 августа = суббота (6), 2 = воскресенье (0), 3 = понедельник (1) и т.д.
-                const dayOfWeek = (firstDayOfMonth + day - 1) % 7;
-                const isSaturday = dayOfWeek === 6;
                 const isWeddingDay = day === 22;
                 
-                let dayClass = 'calendar-day';
                 if (isWeddingDay) {
-                    dayClass += ' wedding-day';
-                } else if (isSaturday) {
-                    dayClass += ' saturday';
+                    // Для 22 августа показываем сердечко
+                    calendarHTML += `<div class="calendar-day wedding-day" title="22 августа - день нашей свадьбы!"></div>`;
+                } else {
+                    // Для остальных дней показываем число
+                    calendarHTML += `<div class="calendar-day">${day}</div>`;
                 }
-                
-                calendarHTML += `<div class="${dayClass}">${day}</div>`;
             }
             
             calendarDays.innerHTML = calendarHTML;
@@ -991,10 +1000,6 @@
             // Активация анимации при скролле
             window.addEventListener('scroll', checkScroll);
             checkScroll(); // Проверить сразу при загрузке
-            
-            // Проверяем, что 22 августа действительно суббота
-            const testDate = new Date(2026, 7, 22); // Август = 7 (0-11)
-            console.log('22 августа 2026 день недели:', testDate.getDay()); // 6 = суббота
         });
     </script>
 </body>
