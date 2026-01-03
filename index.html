@@ -66,8 +66,8 @@
         }
         
         @keyframes heartGlow {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
+            0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.05); }
         }
         
         .animate-fade-in {
@@ -263,12 +263,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3.5rem; /* Увеличенный размер */
+            font-size: 3.8rem; /* Увеличенный размер */
             color: var(--heart-color);
-            opacity: 0.25; /* Более прозрачное */
+            opacity: 0.2; /* Более прозрачное */
             z-index: 1;
             animation: heartGlow 3s ease-in-out infinite;
             font-weight: normal;
+            /* Увеличиваем ширину сердца */
+            width: 1.5em;
+            height: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0; /* Убираем лишние отступы */
         }
         
         .calendar-day.wedding-day span {
@@ -277,7 +284,7 @@
             font-weight: bold;
             color: var(--heart-color);
             font-size: 1.1rem;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1);
         }
         
         .calendar-day.empty {
@@ -623,7 +630,9 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 2.8rem; /* Немного меньше для мобильных */
+                font-size: 3rem; /* Немного меньше для мобильных */
+                width: 1.3em;
+                height: 1.3em;
             }
             
             .calendar-day {
@@ -661,7 +670,9 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+                width: 1.2em;
+                height: 1.2em;
             }
             
             .calendar-day {
