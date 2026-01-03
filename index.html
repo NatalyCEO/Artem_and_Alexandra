@@ -65,6 +65,11 @@
             100% { transform: scale(1); }
         }
         
+        @keyframes heartGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
         .animate-fade-in {
             opacity: 0;
             animation: fadeIn 1s ease forwards;
@@ -80,6 +85,10 @@
         
         .animate-heartbeat {
             animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .animate-heart-glow {
+            animation: heartGlow 2s ease-in-out infinite;
         }
         
         /* Хедер с фото */
@@ -239,19 +248,34 @@
             align-items: center;
             justify-content: center;
             height: 40px;
-        }
-        
-        .calendar-day.wedding-day {
-            color: var(--heart-color);
-            font-weight: bold;
-            transform: scale(1.1);
             position: relative;
         }
         
-        .calendar-day.wedding-day::before {
+        .calendar-day.wedding-day {
+            font-weight: bold;
+            color: var(--heart-color);
+            position: relative;
+        }
+        
+        .calendar-day.wedding-day::after {
             content: "♥";
-            font-size: 1.5rem;
-            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.2rem;
+            color: var(--heart-color);
+            opacity: 0.5;
+            z-index: 1;
+            animation: heartGlow 3s ease-in-out infinite;
+        }
+        
+        .calendar-day.wedding-day span {
+            position: relative;
+            z-index: 2;
+            font-weight: bold;
+            color: var(--heart-color);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
         
         .calendar-day.empty {
@@ -596,6 +620,10 @@
                 padding: 20px;
             }
             
+            .calendar-day.wedding-day::after {
+                font-size: 1.8rem;
+            }
+            
             .countdown-item {
                 min-width: 90px;
                 padding: 20px 15px;
@@ -624,6 +652,10 @@
             .date {
                 font-size: 1.2rem;
                 margin-top: 20px;
+            }
+            
+            .calendar-day.wedding-day::after {
+                font-size: 1.5rem;
             }
             
             .countdown {
@@ -921,15 +953,17 @@
             
             // Ячейки с днями месяца (1-31 августа)
             for (let day = 1; day <= daysInMonth; day++) {
-                // Определяем день недели для каждого числа
-                // 1 августа = суббота (6), 2 = воскресенье (0), 3 = понедельник (1) и т.д.
                 const isWeddingDay = day === 22;
                 
                 if (isWeddingDay) {
-                    // Для 22 августа показываем сердечко
-                    calendarHTML += `<div class="calendar-day wedding-day" title="22 августа - день нашей свадьбы!"></div>`;
+                    // Для 22 августа показываем число с сердечком-контуром
+                    calendarHTML += `
+                        <div class="calendar-day wedding-day" title="22 августа - день нашей свадьбы!">
+                            <span>22</span>
+                        </div>
+                    `;
                 } else {
-                    // Для остальных дней показываем число
+                    // Для остальных дней показываем просто число
                     calendarHTML += `<div class="calendar-day">${day}</div>`;
                 }
             }
