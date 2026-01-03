@@ -66,8 +66,8 @@
         }
         
         @keyframes heartGlow {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
         }
         
         .animate-fade-in {
@@ -247,7 +247,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 40px;
+            height: 45px;
             position: relative;
         }
         
@@ -263,11 +263,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2.2rem;
+            font-size: 3.5rem; /* Увеличенный размер */
             color: var(--heart-color);
-            opacity: 0.5;
+            opacity: 0.25; /* Более прозрачное */
             z-index: 1;
             animation: heartGlow 3s ease-in-out infinite;
+            font-weight: normal;
         }
         
         .calendar-day.wedding-day span {
@@ -275,7 +276,8 @@
             z-index: 2;
             font-weight: bold;
             color: var(--heart-color);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
         }
         
         .calendar-day.empty {
@@ -621,7 +623,11 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 1.8rem;
+                font-size: 2.8rem; /* Немного меньше для мобильных */
+            }
+            
+            .calendar-day {
+                height: 40px;
             }
             
             .countdown-item {
@@ -655,7 +661,11 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 1.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .calendar-day {
+                height: 35px;
             }
             
             .countdown {
@@ -956,7 +966,7 @@
                 const isWeddingDay = day === 22;
                 
                 if (isWeddingDay) {
-                    // Для 22 августа показываем число с сердечком-контуром
+                    // Для 22 августа показываем число с большим прозрачным сердечком-контуром
                     calendarHTML += `
                         <div class="calendar-day wedding-day" title="22 августа - день нашей свадьбы!">
                             <span>22</span>
