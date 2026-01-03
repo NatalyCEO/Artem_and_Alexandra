@@ -25,15 +25,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', Georgia, serif;
         }
         
         body {
-            background-color: #fefefe;
+            background-color: #fff;
             color: var(--color10);
             line-height: 1.6;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .container {
@@ -59,6 +59,7 @@
         }
         
         .animate-fade-in {
+            opacity: 0;
             animation: fadeIn 1s ease forwards;
         }
         
@@ -70,68 +71,77 @@
             animation: pulse 2s infinite;
         }
         
-        /* Хедер и приветствие */
+        /* Хедер с фото */
         .header {
-            background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 50%, var(--color3) 100%);
-            color: white;
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 60px 20px;
-            position: relative;
             overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="white" opacity="0.05" d="M0,0 L100,0 L100,100 Z" /></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
+            background-position: center;
+            color: white;
         }
         
-        .title {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+        .header-content {
             position: relative;
-            z-index: 1;
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
+            z-index: 2;
+            padding: 20px;
+            max-width: 800px;
         }
         
         .names {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: bold;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', Georgia, serif;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
         
-        .heart {
-            color: var(--color4);
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            margin: 0 20px;
             display: inline-block;
-            margin: 0 15px;
+            color: var(--color5);
+            text-shadow: none;
         }
         
-        /* Основное содержимое */
-        .section {
-            padding: 80px 20px;
+        .date {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            font-weight: 300;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 0;
+            display: inline-block;
+        }
+        
+        /* Обращение к гостям */
+        .greeting-section {
+            padding: 100px 20px;
+            background-color: #fff;
             text-align: center;
         }
         
+        .greeting-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--color8);
+            color: var(--color10);
+            font-family: 'Playfair Display', Georgia, serif;
             position: relative;
             display: inline-block;
         }
@@ -139,98 +149,208 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--color3), var(--color4));
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--color1), var(--color3));
         }
         
-        /* Блок с датой и местом */
-        .details {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
+        .greeting-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--color10);
+            text-align: justify;
+            text-align-last: center;
         }
         
-        .detail-card {
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--color8);
+            margin: 40px 0;
+            padding: 20px;
+            border-left: 3px solid var(--color3);
+            text-align: center;
+        }
+        
+        /* Календарь и место */
+        .details-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            text-align: center;
+        }
+        
+        .calendar-container {
+            max-width: 500px;
+            margin: 0 auto 50px;
             background: white;
             border-radius: 15px;
             padding: 30px;
-            width: 300px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: var(--transition);
         }
         
-        .detail-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        
-        .detail-icon {
-            font-size: 2.5rem;
-            color: var(--color4);
+        .calendar-month {
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--color8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
-        .detail-title {
-            font-size: 1.3rem;
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--color9);
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            padding: 12px 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .calendar-day.wedding-day {
+            background: linear-gradient(135deg, var(--color3), var(--color4));
+            color: white;
+            font-weight: bold;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(224, 134, 172, 0.3);
+        }
+        
+        .calendar-day.empty {
+            visibility: hidden;
+        }
+        
+        .location-container {
+            margin-top: 40px;
+        }
+        
+        .location-name {
+            font-size: 1.8rem;
             margin-bottom: 15px;
             color: var(--color8);
         }
         
-        .detail-text {
-            font-size: 1.1rem;
+        .location-address {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
             color: var(--color10);
         }
         
-        /* Блок с обратным отсчетом */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .countdown-item {
-            background: linear-gradient(135deg, var(--color1), var(--color2));
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(to right, var(--color3), var(--color4));
             color: white;
-            border-radius: 10px;
-            padding: 20px 15px;
-            min-width: 100px;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .map-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
+        }
+        
+        /* Пожелания по подаркам и дрескоду */
+        .wishes-section {
+            padding: 80px 20px;
+            background-color: white;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .countdown-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
+        .wishes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         
-        .countdown-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .wish-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .wish-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .wish-title i {
+            color: var(--color3);
+        }
+        
+        .wish-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--color10);
+        }
+        
+        .highlight {
+            color: var(--color4);
+            font-weight: 600;
         }
         
         /* Форма подтверждения */
         .form-section {
-            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
             padding: 80px 20px;
+            background: linear-gradient(135deg, var(--color6) 0%, var(--color7) 100%);
         }
         
         .form-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 50px 40px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        
+        .form-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--color8);
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        .form-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--color9);
+            font-size: 1.1rem;
         }
         
         .form-group {
@@ -252,6 +372,7 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: var(--transition);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -260,24 +381,43 @@
             box-shadow: 0 0 0 3px rgba(224, 134, 172, 0.2);
         }
         
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
         .radio-group {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
         }
         
         .radio-label {
             display: flex;
             align-items: center;
             cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .radio-label:hover {
+            background-color: rgba(224, 134, 172, 0.05);
         }
         
         .radio-input {
+            margin-right: 10px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .checkbox-input {
             margin-right: 8px;
         }
         
@@ -295,6 +435,8 @@
             align-items: center;
             gap: 10px;
             margin-top: 20px;
+            width: 100%;
+            justify-content: center;
         }
         
         .submit-btn:hover {
@@ -302,54 +444,159 @@
             box-shadow: 0 10px 20px rgba(224, 134, 172, 0.3);
         }
         
-        /* Футер */
+        /* Футер с обратным отсчетом */
         .footer {
-            background: var(--color10);
-            color: white;
+            position: relative;
+            padding: 100px 20px 60px;
             text-align: center;
-            padding: 40px 20px;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
         }
         
-        .footer-text {
-            margin-bottom: 20px;
-            opacity: 0.8;
+        .countdown-section {
+            margin-bottom: 60px;
+        }
+        
+        .countdown-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        .contacts {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contacts-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        .contact-item {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
         
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         .social-icon {
             color: white;
             font-size: 1.5rem;
             transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .social-icon:hover {
             color: var(--color5);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
         }
         
         /* Адаптивность */
         @media (max-width: 768px) {
-            .title {
+            .names {
+                font-size: 3rem;
+            }
+            
+            .ampersand {
+                font-size: 3.5rem;
+            }
+            
+            .date {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
                 font-size: 2rem;
             }
             
+            .calendar-container {
+                padding: 20px;
+            }
+            
+            .countdown-item {
+                min-width: 90px;
+                padding: 20px 15px;
+            }
+            
+            .countdown-number {
+                font-size: 2.2rem;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .names {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
+            
+            .ampersand {
                 font-size: 2.5rem;
+                margin: 0 10px;
             }
             
-            .section {
-                padding: 60px 20px;
+            .date {
+                font-size: 1.2rem;
             }
             
-            .detail-card {
-                width: 100%;
-                max-width: 300px;
+            .countdown {
+                gap: 10px;
             }
             
             .countdown-item {
@@ -361,49 +608,17 @@
                 font-size: 1.8rem;
             }
             
-            .form-container {
-                padding: 30px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .title {
-                font-size: 1.8rem;
-            }
-            
-            .names {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .countdown {
-                gap: 10px;
-            }
-            
-            .countdown-item {
-                min-width: 60px;
-                padding: 10px 5px;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
+            .wishes-container {
+                grid-template-columns: 1fr;
             }
         }
         
         /* Дополнительные декоративные элементы */
-        .decoration {
-            position: fixed;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .flower {
+        .heart-decoration {
             color: var(--color3);
-            opacity: 0.1;
-            font-size: 3rem;
+            opacity: 0.7;
+            font-size: 1.5rem;
+            margin: 0 5px;
         }
         
         .hidden {
@@ -414,88 +629,102 @@
             opacity: 1;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Декоративные элементы -->
-    <div class="decoration" style="top: 10%; left: 5%;">
-        <i class="fas fa-heart flower animate-float"></i>
-    </div>
-    <div class="decoration" style="top: 15%; right: 8%;">
-        <i class="fas fa-heart flower animate-float" style="animation-delay: 0.5s;"></i>
-    </div>
-    <div class="decoration" style="bottom: 20%; left: 10%;">
-        <i class="fas fa-heart flower animate-float" style="animation-delay: 1s;"></i>
-    </div>
-    
-    <!-- Шапка -->
+    <!-- Шапка с фото и именами -->
     <header class="header">
-        <div class="container">
-            <h1 class="title animate-fade-in">Приглашение на свадьбу</h1>
-            <p class="subtitle animate-fade-in" style="animation-delay: 0.2s;">С великой радостью приглашаем вас разделить с нами самый важный день в нашей жизни</p>
-            <div class="names animate-fade-in" style="animation-delay: 0.4s;">
-                Артём <span class="heart animate-pulse"><i class="fas fa-heart"></i></span> Александра
+        <div class="header-content">
+            <div class="names animate-fade-in">
+                Артём<span class="ampersand animate-pulse">&</span>Александра
             </div>
-            <p class="subtitle animate-fade-in" style="animation-delay: 0.6s;">22 августа 2026 года</p>
+            <div class="date animate-fade-in" style="animation-delay: 0.3s;">
+                22 августа 2026 года
+            </div>
         </div>
     </header>
     
-    <!-- Секция с деталями -->
-    <section class="section">
+    <!-- Обращение к гостям -->
+    <section class="greeting-section">
         <div class="container">
-            <h2 class="section-title">Детали свадьбы</h2>
-            <div class="details">
-                <div class="detail-card animate-fade-in" style="animation-delay: 0.2s;">
-                    <div class="detail-icon">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    <h3 class="detail-title">Дата и время</h3>
-                    <p class="detail-text">22 августа 2026 года</p>
-                    <p class="detail-text">Сбор гостей в 15:00</p>
-                    <p class="detail-text">Церемония в 16:00</p>
+            <div class="greeting-content">
+                <h2 class="section-title animate-fade-in">Дорогие друзья и родные!</h2>
+                <div class="greeting-text animate-fade-in" style="animation-delay: 0.2s;">
+                    <p>Вот и наступило время сообщить вам приятное известие — мы женимся! Да, да! Случилось неизбежное.</p>
+                    
+                    <p>Забудьте обо всех делах, отмените запланированные встречи! Ведь вы ни за что на свете не должны пропустить самое главное торжество нашей жизни — наш первый семейный праздник, который мы были бы счастливы разделить вместе с вами!</p>
                 </div>
                 
-                <div class="detail-card animate-fade-in" style="animation-delay: 0.4s;">
-                    <div class="detail-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="detail-title">Место проведения</h3>
-                    <p class="detail-text">Загородный банкетный комплекс «Лесной»</p>
-                    <p class="detail-text">Адрес: Каштак, ул. Детский санаторий, дом 9</p>
+                <div class="quote animate-fade-in" style="animation-delay: 0.4s;">
+                    "Любовь — это когда встречаются две половинки и становятся одним целым"
                 </div>
                 
-                <div class="detail-card animate-fade-in" style="animation-delay: 0.6s;">
-                    <div class="detail-icon">
-                        <i class="fas fa-glass-cheers"></i>
-                    </div>
-                    <h3 class="detail-title">Дресс-код</h3>
-                    <p class="detail-text">Вечерние наряды</p>
-                    <p class="detail-text">Светлые и пастельные тона</p>
-                    <p class="detail-text">Удобная обувь для прогулок на природе</p>
+                <div class="greeting-text animate-fade-in" style="animation-delay: 0.6s;">
+                    <p>Мы приглашаем вас стать свидетелями начала нашего совместного пути и разделить с нами радость этого особенного дня. Ваше присутствие сделает наш праздник по-настоящему светлым и запоминающимся.</p>
+                    
+                    <p>С любовью, Артём и Александра</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Секция с обратным отсчетом -->
-    <section class="section" style="background: linear-gradient(135deg, var(--color6) 0%, var(--color7) 100%);">
+    <!-- Календарь и место -->
+    <section class="details-section">
         <div class="container">
-            <h2 class="section-title">До свадьбы осталось</h2>
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days" class="countdown-number">000</span>
-                    <span class="countdown-label">Дней</span>
+            <h2 class="section-title animate-fade-in">Детали мероприятия</h2>
+            
+            <div class="calendar-container animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="calendar-month">Август 2026</div>
+                
+                <div class="calendar-weekdays">
+                    <div>ПН</div>
+                    <div>ВТ</div>
+                    <div>СР</div>
+                    <div>ЧТ</div>
+                    <div>ПТ</div>
+                    <div>СБ</div>
+                    <div>ВС</div>
                 </div>
-                <div class="countdown-item">
-                    <span id="hours" class="countdown-number">00</span>
-                    <span class="countdown-label">Часов</span>
+                
+                <div class="calendar-days" id="calendar-days">
+                    <!-- Календарь будет заполнен через JavaScript -->
                 </div>
-                <div class="countdown-item">
-                    <span id="minutes" class="countdown-number">00</span>
-                    <span class="countdown-label">Минут</span>
+            </div>
+            
+            <div class="location-container animate-fade-in" style="animation-delay: 0.4s;">
+                <h3 class="location-name">Загородный банкетный комплекс «Лесной»</h3>
+                <p class="location-address">Каштак, ул. Детский санаторий, дом 9</p>
+                
+                <a href="https://yandex.ru/maps/?text=Каштак, ул. Детский санаторий, дом 9" target="_blank" class="map-btn">
+                    <i class="fas fa-map-marked-alt"></i> Открыть карту
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Пожелания по подаркам и дрескоду -->
+    <section class="wishes-section">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">Пожелания</h2>
+            
+            <div class="wishes-container">
+                <div class="wish-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="wish-title"><i class="fas fa-gift"></i> Подарки</h3>
+                    <p class="wish-text">
+                        Мы не хотим утруждать вас выбором подарка, поэтому будем рады вашему вкладу в бюджет нашей молодой семьи. 
+                        Это поможет нам осуществить наши общие мечты и планы на будущее.
+                    </p>
                 </div>
-                <div class="countdown-item">
-                    <span id="seconds" class="countdown-number">00</span>
-                    <span class="countdown-label">Секунд</span>
+                
+                <div class="wish-card animate-fade-in" style="animation-delay: 0.4s;">
+                    <h3 class="wish-title"><i class="fas fa-tshirt"></i> Дресс-код</h3>
+                    <p class="wish-text">
+                        Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на соответствующих случаю вечерних нарядах:
+                        <br><br>
+                        <span class="highlight">Женщины</span> — вечерние платья (no white, no black)
+                        <br>
+                        <span class="highlight">Мужчины</span> — вечерний костюм
+                    </p>
                 </div>
             </div>
         </div>
@@ -505,87 +734,166 @@
     <section class="form-section">
         <div class="container">
             <div class="form-container animate-fade-in">
-                <h2 class="section-title">Подтвердите присутствие</h2>
-                <p style="margin-bottom: 30px; color: var(--color9);">Пожалуйста, заполните форму до 1 августа 2026 года</p>
+                <h2 class="form-title">Подтвердите, пожалуйста, своё присутствие!</h2>
+                <p class="form-subtitle">Пожалуйста, заполните форму до 1 августа 2026 года</p>
                 
                 <form id="rsvp-form">
                     <div class="form-group">
-                        <label class="form-label" for="name">Ваше имя и фамилия *</label>
-                        <input type="text" id="name" class="form-input" required>
+                        <label class="form-label" for="name">Ваши ФИО *</label>
+                        <input type="text" id="name" class="form-input" required placeholder="Иванов Иван Иванович">
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="phone">Номер телефона *</label>
-                        <input type="tel" id="phone" class="form-input" required>
+                        <input type="tel" id="phone" class="form-input" required placeholder="+7 (XXX) XXX-XX-XX">
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="email">Электронная почта</label>
-                        <input type="email" id="email" class="form-input">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Вы придёте на свадьбу? *</label>
+                        <label class="form-label">Сможете ли присутствовать на нашем торжестве? *</label>
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="attendance" value="yes" class="radio-input" required>
-                                <span>Да, с удовольствием!</span>
+                                <span>Я с удовольствием приду</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="with-partner" class="radio-input" required>
+                                <span>Буду со своей парой</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="attendance" value="no" class="radio-input" required>
-                                <span>К сожалению, не смогу</span>
+                                <span>К сожалению, не смогу присутствовать</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="later" class="radio-input" required>
+                                <span>Сообщу позже</span>
                             </label>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="guests">Количество гостей (включая вас) *</label>
-                        <select id="guests" class="form-select" required>
-                            <option value="" disabled selected>Выберите количество</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
-                        </select>
+                        <label class="form-label">Что предпочитаете из напитков?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="champagne" class="checkbox-input">
+                                <span>Шампанское</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="white-wine" class="checkbox-input">
+                                <span>Вино белое</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="red-wine" class="checkbox-input">
+                                <span>Вино красное</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="rose-wine" class="checkbox-input">
+                                <span>Вино розовое</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="martini" class="checkbox-input">
+                                <span>Мартини / коктейль</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="drinks" value="vodka" class="checkbox-input">
+                                <span>Водка</span>
+                            </label>
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="food">Предпочтения по еде</label>
-                        <textarea id="food" class="form-textarea" placeholder="Укажите, если у вас есть пищевые ограничения или аллергии..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="message">Ваши пожелания молодоженам</label>
+                        <label class="form-label" for="message">Ваши пожелания молодым</label>
                         <textarea id="message" class="form-textarea" placeholder="Напишите ваши пожелания или поздравления..."></textarea>
                     </div>
                     
-                    <div style="text-align: center;">
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i> Отправить ответ
-                        </button>
-                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Отправить ответ
+                    </button>
                 </form>
             </div>
         </div>
     </section>
     
-    <!-- Футер -->
+    <!-- Футер с обратным отсчетом и контактами -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">С нетерпением ждём этого дня и надеемся разделить его с вами!</p>
-            <p class="footer-text">С любовью, Артём и Александра</p>
-            <p class="footer-text">По всем вопросам: +7 (XXX) XXX-XX-XX</p>
+            <div class="countdown-section">
+                <h3 class="countdown-title">До свадьбы осталось</h3>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">000</span>
+                        <span class="countdown-label">Дней</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Часов</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">00</span>
+                        <span class="countdown-label">Минут</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">00</span>
+                        <span class="countdown-label">Секунд</span>
+                    </div>
+                </div>
+            </div>
             
-            <div class="social-icons">
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <div class="contacts">
+                <h3 class="contacts-title">Контакты</h3>
+                
+                <div class="contact-item">
+                    По всем вопросам можете обращаться к нам:
+                </div>
+                <div class="contact-item">
+                    Артём: +7 (XXX) XXX-XX-XX
+                </div>
+                <div class="contact-item">
+                    Александра: +7 (XXX) XXX-XX-XX
+                </div>
+                
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+                </div>
             </div>
         </div>
     </footer>
     
     <script>
+        // Генерация календаря на август 2026
+        function generateCalendar() {
+            const calendarDays = document.getElementById('calendar-days');
+            const weddingDate = new Date(2026, 7, 22); // 22 августа 2026 (месяцы 0-11)
+            
+            // Август 2026 начинается с субботы (0 - воскресенье, 1 - понедельник...)
+            // 1 августа 2026 - суббота (6)
+            const firstDayOfMonth = 6; // Суббота
+            const daysInMonth = 31;
+            
+            let calendarHTML = '';
+            
+            // Пустые ячейки для дней до начала месяца
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                // Если первый день месяца - суббота (6), нам нужны ячейки с пн-пт (0-4)
+                // Но в нашем календаре неделя начинается с понедельника
+                // Для субботы как первого дня: пустых ячеек = 5 (пн-пт)
+                const adjustedIndex = (i + 1) % 7; // Преобразуем для календаря, начинающегося с понедельника
+                calendarHTML += `<div class="calendar-day empty"></div>`;
+            }
+            
+            // Ячейки с днями месяца
+            for (let day = 1; day <= daysInMonth; day++) {
+                const isWeddingDay = day === 22;
+                const dayClass = isWeddingDay ? 'calendar-day wedding-day' : 'calendar-day';
+                calendarHTML += `<div class="${dayClass}">${day}</div>`;
+            }
+            
+            calendarDays.innerHTML = calendarHTML;
+        }
+        
         // Обратный отсчет до свадьбы
         function updateCountdown() {
             const weddingDate = new Date('August 22, 2026 15:00:00').getTime();
@@ -639,6 +947,9 @@
         
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
+            // Генерация календаря
+            generateCalendar();
+            
             // Запуск обратного отсчета
             updateCountdown();
             setInterval(updateCountdown, 1000);
