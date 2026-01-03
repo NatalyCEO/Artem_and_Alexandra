@@ -226,7 +226,7 @@
         
         .details-section .container {
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
         
         .calendar-container {
@@ -642,7 +642,85 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
         }
-        
+        /* Стили для цветовой палитры */
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+
+        .color-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        /* Стили для блока с семьей */
+        .family-info-box {
+            background: linear-gradient(135deg, rgba(195, 145, 136, 0.08) 0%, rgba(224, 134, 172, 0.05) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(195, 145, 136, 0.15);
+        }
+
+        .family-title {
+            font-size: 1.3rem;
+            color: var(--color8);
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .family-count-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .family-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid var(--color6);
+            border-radius: 10px;
+            color: var(--color8);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .family-btn:hover {
+            border-color: var(--color3);
+            background-color: rgba(224, 134, 172, 0.05);
+        }
+
+        .family-btn.active {
+            background-color: var(--color3);
+            border-color: var(--color3);
+            color: white;
+        }
+
+        .children-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+
         /* Адаптивность */
         @media (max-width: 768px) {
             .name {
@@ -694,6 +772,10 @@
             
             .form-container {
                 padding: 30px 20px;
+            }
+            .color-circle {
+                width: 30px;
+                height: 30px;
             }
         }
         
@@ -748,6 +830,10 @@
             .wishes-container {
                 grid-template-columns: 1fr;
             }
+            .color-circle {
+                width: 25px;
+                height: 25px;
+            }
         }
         
         /* Дополнительные декоративные элементы */
@@ -774,7 +860,7 @@
         <div class="header-content">
             <div class="names-container animate-fade-in">
                 <div class="name">Артём</div>
-                <div class="heart-divider animate-heartbeat">🤍</div>
+                <div class="heart-divider animate-heartbeat">&</div>
                 <div class="name">Александра</div>
             </div>
             <div class="date animate-fade-in" style="animation-delay: 0.3s;">
@@ -860,11 +946,21 @@
                     <p class="wish-text">
                         Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на цветовой гамме:
                     </p>
+                    <div class="color-palette">
+                        <div class="color-circle" style="background-color: #fde8e7;" title="Нежный бежево-розовый"></div>
+                        <div class="color-circle" style="background-color: #d6b4ab;" title="Теплый розовый"></div>
+                        <div class="color-circle" style="background-color: #bca68f;" title="Коричнево-бежевый"></div>
+                        <div class="color-circle" style="background-color: #7c825e;" title="Хаки"></div>
+                        <div class="color-circle" style="background-color: #5f4a2f;" title="Коричневый"></div>
+                    </div>
+                    <p class="wish-text" style="margin-top: 15px; font-size: 0.95rem; color: var(--color9);">
+                        Вы можете выбрать любой из этих оттенков или их гармоничные сочетания.
+                    </p>
                 </div>
                 <div class="wish-card animate-fade-in" style="animation-delay: 0.6s;">
                     <h3 class="wish-title"><i class="fas fa-child"></i> Важная информация</h3>
                     <p class="wish-text">
-                        <strong>О детях:</strong> К сожалению, в ресторане нет детских зон и нет возможности пригласить аниматоров для самых маленьких гостей. Поэтому просим заранее подумать о том, с кем оставить детей на праздничный вечер.
+                        К сожалению, в ресторане нет детских зон и нет возможности пригласить аниматоров для самых маленьких гостей. Поэтому просим заранее подумать о том, с кем оставить детей на праздничный вечер.
                     </p>
                 </div>
             </div>
@@ -901,7 +997,7 @@
     <section class="form-section">
         <div class="container">
             <div class="form-container animate-fade-in">
-                <h2 class="form-title">Подтвердите, пожалуйста, своё присутствие!</h2>
+                <h2 class="form-title">Анкета гостя</h2>
                 <p class="form-subtitle">Пожалуйста, заполните форму до 1 августа 2026 года</p>
                 
                 <form id="rsvp-form">
@@ -927,12 +1023,73 @@
                                 <span>Буду со своей парой</span>
                             </label>
                             <label class="radio-label">
+                                <input type="radio" name="attendance" value="with-family" class="radio-input" required id="with-family-radio">
+                                <span>Придём с семьёй</span>
+                            </label>
+                            <label class="radio-label">
                                 <input type="radio" name="attendance" value="no" class="radio-input" required>
                                 <span>К сожалению, не смогу присутствовать</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="attendance" value="later" class="radio-input" required>
                                 <span>Сообщу позже</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Скрытый блок для информации о семье (новый дружелюбный вариант) -->
+                    <div id="family-details" class="form-group" style="display: none;">
+                        <div class="family-info-box">
+                            <h4 class="family-title">Расскажите о вашей компании</h4>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Сколько вас будет?</label>
+                                <div class="family-count-buttons">
+                                    <button type="button" class="family-btn" data-count="2">2 человека</button>
+                                    <button type="button" class="family-btn" data-count="3">3 человека</button>
+                                    <button type="button" class="family-btn" data-count="4">4 человека</button>
+                                    <button type="button" class="family-btn" data-count="5">5 человек</button>
+                                </div>
+                                <input type="hidden" id="family-count" name="family-count">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Будут ли с вами дети?</label>
+                                <div class="children-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="children" value="no" class="radio-input" checked>
+                                        <span>Нет, только взрослые</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="children" value="yes" class="radio-input">
+                                        <span>Да, с детьми</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div id="children-ages-group" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-label">Сколько им лет?</label>
+                                    <input type="text" id="children-ages" class="form-input" placeholder="Например: 5 и 8 лет">
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 0.95rem; color: var(--color8); margin-top: 15px; font-style: italic;">
+                                Спасибо, что помогаете нам всё правильно организовать!
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Вам необходим трансфер после мероприятия? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="transfer" value="yes" class="radio-input" required>
+                                <span>Да, необходим трансфер</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="transfer" value="no" class="radio-input" required>
+                                <span>Нет, доберусь самостоятельно</span>
                             </label>
                         </div>
                     </div>
@@ -958,7 +1115,7 @@
                             </label>
                             <label class="checkbox-label">
                                 <input type="checkbox" name="drinks" value="martini" class="checkbox-input">
-                                <span>Мартини / коктейль</span>
+                                <span>Мартини / коктейли</span>
                             </label>
                             <label class="checkbox-label">
                                 <input type="checkbox" name="drinks" value="vodka" class="checkbox-input">
@@ -993,13 +1150,6 @@
             </div>
             <div class="contact-item">
                 Александра: +7 (XXX) XXX-XX-XX
-            </div>
-            
-            <div class="social-icons">
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
             </div>
         </div>
     </footer>
@@ -1101,6 +1251,51 @@
                 }
             });
         }
+
+        // Показать/скрыть блок с информацией о семье
+        document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const familyDetails = document.getElementById('family-details');
+                
+                if (this.value === 'with-family') {
+                    familyDetails.style.display = 'block';
+                    familyDetails.classList.add('animate-fade-in');
+                    setTimeout(() => familyDetails.classList.add('visible'), 10);
+                } else {
+                    familyDetails.style.display = 'none';
+                    familyDetails.classList.remove('visible');
+                }
+            });
+        });
+
+        // Кнопки для выбора количества людей
+        document.querySelectorAll('.family-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Убрать активный класс у всех кнопок
+                document.querySelectorAll('.family-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Добавить активный класс текущей кнопке
+                this.classList.add('active');
+                
+                // Установить значение в скрытое поле
+                document.getElementById('family-count').value = this.getAttribute('data-count');
+            });
+        });
+
+        // Показать/скрыть поле возраста детей
+        document.querySelectorAll('input[name="children"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const childrenAgesGroup = document.getElementById('children-ages-group');
+                
+                if (this.value === 'yes') {
+                    childrenAgesGroup.style.display = 'block';
+                } else {
+                    childrenAgesGroup.style.display = 'none';
+                }
+            });
+        });
         
         // Обработка формы
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
