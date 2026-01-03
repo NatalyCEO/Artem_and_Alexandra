@@ -67,12 +67,12 @@
         
         @keyframes heartGlow {
             0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
+            50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.08); }
         }
         
         @keyframes heartPulse {
             0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.4; }
         }
         
         .animate-fade-in {
@@ -93,7 +93,7 @@
         }
         
         .animate-heart-glow {
-            animation: heartGlow 2s ease-in-out infinite;
+            animation: heartGlow 1.8s ease-in-out infinite;
         }
         
         .animate-heart-pulse {
@@ -272,19 +272,22 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3.8rem;
+            font-size: 4.5rem; /* Увеличенный размер для ширины */
             color: var(--heart-color);
-            opacity: 0.25;
+            opacity: 0.22;
             z-index: 1;
-            animation: heartGlow 1.5s ease-in-out infinite;
+            animation: heartGlow 1.8s ease-in-out infinite;
             font-weight: normal;
-            width: 1.5em;
-            height: 1.5em;
+            /* Увеличиваем ширину сердца еще больше */
+            width: 1.8em; /* Было 1.5em */
+            height: 1.8em; /* Было 1.5em */
             display: flex;
             align-items: center;
             justify-content: center;
-            letter-spacing: 0;
-            text-shadow: 0 0 15px rgba(195, 145, 134, 0.4);
+            letter-spacing: 0.1em; /* Немного увеличили для ширины */
+            text-shadow: 0 0 20px rgba(195, 145, 134, 0.3);
+            /* Используем более широкий символ сердечка */
+            font-family: Arial, sans-serif; /* Более широкий шрифт для сердца */
         }
         
         .calendar-day.wedding-day span {
@@ -292,8 +295,8 @@
             z-index: 2;
             font-weight: bold;
             color: var(--heart-color);
-            font-size: 1.1rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+            font-size: 1.15rem; /* Немного увеличили */
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
         }
         
         .calendar-day.empty {
@@ -652,9 +655,9 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 3rem;
-                width: 1.3em;
-                height: 1.3em;
+                font-size: 3.5rem; /* Адаптивный размер для планшетов */
+                width: 1.6em;
+                height: 1.6em;
             }
             
             .calendar-day {
@@ -696,9 +699,9 @@
             }
             
             .calendar-day.wedding-day::after {
-                font-size: 2.5rem;
-                width: 1.2em;
-                height: 1.2em;
+                font-size: 3rem; /* Адаптивный размер для мобильных */
+                width: 1.4em;
+                height: 1.4em;
             }
             
             .calendar-day {
