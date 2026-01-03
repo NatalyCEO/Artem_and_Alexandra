@@ -1175,7 +1175,7 @@
                 <!-- Блок с благодарственным фото -->
                 <div id="thanks-message" style="display: none; text-align: center; margin-top: 30px;">
                     <img src="thanks.jpg" alt="Спасибо за заполнение анкеты" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-                    <p style="margin-top: 20px; font-size: 1.2rem; color: var(--color8); font-weight: 500;">Спасибо за ваш ответ! Мы получили ваше подтверждение и будем ждать вас на свадьбе!</p>
+                    <p id="thanks-text" style="margin-top: 20px; font-size: 1.2rem; color: var(--color8); font-weight: 500;">Спасибо за ваш ответ!</p>
                 </div>
             </div>
         </div>
@@ -1344,6 +1344,20 @@
         // Обработка формы
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Получаем значение выбранного варианта присутствия
+            const attendanceValue = document.querySelector('input[name="attendance"]:checked').value;
+
+            // Определяем текст благодарности в зависимости от выбора
+            let thanksText = '';
+            if (attendanceValue === 'no') {
+                thanksText = 'Спасибо за ваш ответ! Мы будем скучать без вас, но понимаем, что обстоятельства бывают разные.';
+            } else {
+                thanksText = 'Спасибо за ваш ответ! Мы получили ваше подтверждение и будем ждать вас на свадьбе!';
+            }
+
+            // Устанавливаем текст благодарности
+            document.getElementById('thanks-text').textContent = thanksText;
 
             // В реальном проекте здесь был бы AJAX-запрос к серверу
             // Для демо покажем благодарственное фото
