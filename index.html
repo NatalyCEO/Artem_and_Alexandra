@@ -216,6 +216,24 @@
             background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
             text-align: center;
         }
+        .details-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.08"><path fill="%23ACB493" d="M150,100 Q200,50 250,100 T350,100 Q400,50 450,100 T550,100 Q600,50 650,100" stroke="%23ACB493" stroke-width="2" fill="none"/><path fill="%23ACB493" d="M100,200 Q150,150 200,200 T300,200 Q350,150 400,200 T500,200 Q550,150 600,200" stroke="%23ACB493" stroke-width="2" fill="none"/><path fill="%23ACB493" d="M50,300 Q100,250 150,300 T250,300 Q300,250 350,300 T450,300 Q500,250 550,300" stroke="%23ACB493" stroke-width="2" fill="none"/><ellipse cx="180" cy="120" rx="15" ry="8" fill="%23ACB493"/><ellipse cx="380" cy="120" rx="12" ry="6" fill="%23ACB493"/><ellipse cx="580" cy="120" rx="18" ry="9" fill="%23ACB493"/><ellipse cx="130" cy="220" rx="14" ry="7" fill="%23ACB493"/><ellipse cx="330" cy="220" rx="16" ry="8" fill="%23ACB493"/><ellipse cx="530" cy="220" rx="13" ry="6" fill="%23ACB493"/><ellipse cx="80" cy="320" rx="17" ry="8" fill="%23ACB493"/><ellipse cx="280" cy="320" rx="11" ry="5" fill="%23ACB493"/><ellipse cx="480" cy="320" rx="15" ry="7" fill="%23ACB493"/></svg>');
+            background-size: 800px 600px;
+            background-repeat: repeat;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        
+        .details-section .container {
+            position: relative;
+            z-index: 1;
+        }
         
         .calendar-container {
             max-width: 500px;
