@@ -100,6 +100,28 @@
             animation: heartPulse 1.5s ease-in-out infinite;
         }
         
+        /* Анимации для появления при скролле */
+        .fade-in-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Задержки для разных элементов */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        .delay-7 { transition-delay: 0.7s; }
+        .delay-8 { transition-delay: 0.8s; }
+        
         /* Хедер с фото */
         .header {
             position: relative;
@@ -216,7 +238,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            /* ЗАМЕНИТЕ ЭТУ ССЫЛКУ НА ВАШЕ ФОТО */
             background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)), 
                         url('619e18a1-485d-4e99-a853-6d3528913185.jpg');
             background-size: cover;
@@ -283,14 +304,12 @@
             position: absolute;
             top: 28px;
             left: 31.5px;
-            /*transform: translate(calc(-50% + 40px), calc(-50% + 40px));*/
             font-size: 2.5rem; /* Увеличенный размер для ширины */
             color: var(--heart-color);
             opacity: 0.22;
             z-index: 1;
             animation: heartGlow 1.8s ease-in-out infinite;
             font-weight: normal;
-            /* Увеличиваем ширину сердца еще больше */
             width: 1.5em; /* Было 1.5em */
             height: 1.5em; /* Было 1.5em */
             display: flex;
@@ -298,7 +317,6 @@
             justify-content: center;
             letter-spacing: 0.1em; /* Немного увеличили для ширины */
             text-shadow: 0 0 20px rgba(195, 145, 134, 0.3);
-            /* Используем более широкий символ сердечка */
             font-family: Arial, sans-serif; /* Более широкий шрифт для сердца */
         }
         
@@ -642,6 +660,7 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
         }
+        
         /* Стили для цветовой палитры */
         .color-palette {
             display: flex;
@@ -665,6 +684,7 @@
             transform: scale(1.1);
             box-shadow: 0 5px 10px rgba(0,0,0,0.15);
         }
+        
         /* Стили для блока с семьей */
         .family-info-box {
             background: linear-gradient(135deg, rgba(195, 145, 136, 0.08) 0%, rgba(224, 134, 172, 0.05) 100%);
@@ -720,168 +740,6 @@
             margin-bottom: 15px;
         }
 
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .name {
-                font-size: 3.5rem;
-            }
-            
-            .heart-divider {
-                font-size: 2.5rem;
-                margin: 10px 0;
-            }
-            
-            .date {
-                font-size: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .calendar-container {
-                padding: 20px;
-            }
-            
-            .calendar-day.wedding-day::after {
-                font-size: 3.5rem; /* Адаптивный размер для планшетов */
-                top: 50%;
-                left: 50%;
-                transform: translate(calc(-50% + 3px), -50%);
-                width: 1.6em;
-                height: 1.6em;
-            }
-            
-            .calendar-day {
-                height: 40px;
-            }
-            .wishes-container {
-                grid-template-columns: 1fr; /* На мобильных все карточки в одну колонку */
-            }
-            
-            .countdown-title {
-                font-size: 1.8rem;
-                margin-bottom: 25px;
-            }
-            
-            .countdown {
-                gap: 8px;
-                margin: 20px auto;
-                max-width: 95%;
-                justify-content: center;
-                flex-wrap: nowrap;
-            }
-            
-            .countdown-item {
-                min-width: 70px;
-                padding: 15px 8px;
-                border-radius: 12px;
-                flex: 0 1 auto;
-            }
-            
-            .countdown-number {
-                font-size: 1.6rem;
-            }
-            
-            .countdown-label {
-                font-size: 0.75rem;
-                letter-spacing: 0.5px;
-            }
-            .form-container {
-                padding: 30px 20px;
-            }
-            .color-circle {
-                width: 30px;
-                height: 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .name {
-                font-size: 2.8rem;
-                letter-spacing: 1px;
-            }
-            
-            .heart-divider {
-                font-size: 2rem;
-                margin: 8px 0;
-            }
-            
-            .date {
-                font-size: 1.2rem;
-                margin-top: 20px;
-            }
-            
-            .calendar-day.wedding-day::after {
-                font-size: 3rem; /* Адаптивный размер для мобильных */
-                top: 50%;
-                left: 50%;
-                transform: translate(calc(-50% + 3px), -50%);
-                width: 1.4em;
-                height: 1.4em;
-            }
-            
-            .calendar-day {
-                height: 35px;
-            }
-            
-            .countdown-title {
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
-            
-            .countdown {
-                gap: 5px;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                width: 100%;
-                max-width: 320px;
-                margin: 0 auto;
-            }
-            
-            .countdown-item {
-                min-width: auto;
-                width: calc(25% - 5px);
-                padding: 12px 5px;
-                flex: 1;
-                border-radius: 10px;
-            }
-            
-            .countdown-number {
-                font-size: 1.3rem;
-            }
-            
-            .countdown-label {
-                font-size: 0.65rem;
-                letter-spacing: 0.3px;
-            }
-            
-            .wishes-container {
-                grid-template-columns: 1fr;
-            }
-            .color-circle {
-                width: 25px;
-                height: 25px;
-            }
-        }
-        
-        /* Дополнительные декоративные элементы */
-        .heart-decoration {
-            color: var(--color3);
-            opacity: 0.7;
-            font-size: 1.5rem;
-            margin: 0 5px;
-        }
-
-        .hidden {
-            opacity: 0;
-        }
-
-        .visible {
-            opacity: 1;
-        }
-
         /* Модальное окно благодарности */
         .thank-you-modal {
             display: none;
@@ -928,9 +786,17 @@
         }
 
         @keyframes modalAppear {
-            to {
-                transform: scale(1);
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            70% {
                 opacity: 1;
+                transform: scale(1.05) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
             }
         }
 
@@ -938,7 +804,7 @@
             font-size: 4rem;
             color: var(--color3);
             margin-bottom: 20px;
-            animation: heartBeat 1.5s ease-in-out infinite;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
         .thank-you-title {
@@ -994,6 +860,248 @@
             box-shadow: 0 10px 20px rgba(195, 145, 134, 0.4);
             background-color: #b0827a;
         }
+
+        /* Кнопка "Наверх" */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--heart-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(195, 145, 134, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background-color: #b0827a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(195, 145, 134, 0.4);
+        }
+
+        /* Анимация для плавающих сердечек в модальном окне */
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Дополнительные декоративные элементы */
+        .heart-decoration {
+            color: var(--color3);
+            opacity: 0.7;
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 3.5rem;
+            }
+            
+            .date {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .calendar-container {
+                padding: 20px;
+            }
+            
+            .calendar-day.wedding-day::after {
+                font-size: 3.5rem; /* Адаптивный размер для планшетов */
+                top: 50%;
+                left: 50%;
+                transform: translate(calc(-50% + 3px), -50%);
+                width: 1.6em;
+                height: 1.6em;
+            }
+            
+            .calendar-day {
+                height: 40px;
+            }
+            
+            .wishes-container {
+                grid-template-columns: 1fr; /* На мобильных все карточки в одну колонку */
+            }
+            
+            .countdown-title {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+            
+            .countdown {
+                gap: 8px;
+                margin: 20px auto;
+                max-width: 95%;
+                justify-content: center;
+                flex-wrap: nowrap;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 15px 8px;
+                border-radius: 12px;
+                flex: 0 1 auto;
+            }
+            
+            .countdown-number {
+                font-size: 1.6rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .color-circle {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .fade-in-scroll {
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .name {
+                font-size: 2.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .date {
+                font-size: 1.2rem;
+                margin-top: 20px;
+            }
+            
+            .calendar-day.wedding-day::after {
+                font-size: 3rem; /* Адаптивный размер для мобильных */
+                top: 50%;
+                left: 50%;
+                transform: translate(calc(-50% + 3px), -50%);
+                width: 1.4em;
+                height: 1.4em;
+            }
+            
+            .calendar-day {
+                height: 35px;
+            }
+            
+            .countdown-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .countdown {
+                gap: 5px;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .countdown-item {
+                min-width: auto;
+                width: calc(25% - 5px);
+                padding: 12px 5px;
+                flex: 1;
+                border-radius: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.65rem;
+                letter-spacing: 0.3px;
+            }
+            
+            .wishes-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .color-circle {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .fade-in-scroll {
+                transform: translateY(15px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .thank-you-content {
+                padding: 40px 20px;
+            }
+            
+            .thank-you-title {
+                font-size: 2rem;
+            }
+            
+            .thank-you-icon {
+                font-size: 3rem;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
@@ -1001,12 +1109,12 @@
     <!-- Шапка с фото и именами -->
     <header class="header">
         <div class="header-content">
-            <div class="names-container animate-fade-in">
+            <div class="names-container fade-in-scroll delay-1">
                 <div class="name">Артём</div>
                 <div class="name">&</div>
                 <div class="name">Александра</div>
             </div>
-            <div class="date animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="date fade-in-scroll delay-3">
                 22.08.2026
             </div>
         </div>
@@ -1016,18 +1124,18 @@
     <section class="greeting-section">
         <div class="container">
             <div class="greeting-content">
-                <h2 class="section-title animate-fade-in">Дорогие друзья и родные!</h2>
-                <div class="greeting-text animate-fade-in" style="animation-delay: 0.2s;">
+                <h2 class="section-title fade-in-scroll delay-1">Дорогие друзья и родные!</h2>
+                <div class="greeting-text fade-in-scroll delay-2">
                     <p>Вот и наступило время сообщить вам приятное известие — мы женимся!</p>
                     
                     <p>Забудьте обо всех делах, отмените запланированные встречи! Ведь вы ни за что на свете не должны пропустить самое главное торжество нашей жизни — наш первый семейный праздник, который мы были бы счастливы разделить вместе с вами!</p>
                 </div>
                 
-                <div class="quote animate-fade-in" style="animation-delay: 0.4s;">
+                <div class="quote fade-in-scroll delay-4">
                     Любовь — быть лучшим друг для друга.
                 </div>
                 
-                <div class="greeting-text animate-fade-in" style="animation-delay: 0.6s;">
+                <div class="greeting-text fade-in-scroll delay-6">
                     <p>Мы приглашаем вас стать свидетелями начала нашего совместного пути и разделить с нами радость этого особенного дня. Ваше присутствие сделает наш праздник по-настоящему светлым и запоминающимся.</p>
                     
                     <p>С любовью, Артём и Александра</p>
@@ -1039,9 +1147,9 @@
     <!-- Календарь и место -->
     <section class="details-section">
         <div class="container">
-            <h2 class="section-title animate-fade-in">Детали мероприятия</h2>
+            <h2 class="section-title fade-in-scroll delay-1">Детали мероприятия</h2>
             
-            <div class="calendar-container animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="calendar-container fade-in-scroll delay-2">
                 <div class="calendar-month">Август 2026</div>
                 
                 <div class="calendar-weekdays">
@@ -1059,7 +1167,7 @@
                 </div>
             </div>
             
-            <div class="location-container animate-fade-in" style="animation-delay: 0.4s;">
+            <div class="location-container fade-in-scroll delay-4">
                 <h3 class="location-name">Загородный банкетный комплекс «Лесной»</h3>
                 <p class="location-address">Каштак, ул. Детский санаторий, дом 9</p>
                 
@@ -1073,10 +1181,10 @@
     <!-- Пожелания по подаркам и дрескоду -->
     <section class="wishes-section">
         <div class="container">
-            <h2 class="section-title animate-fade-in">Пожелания</h2>
+            <h2 class="section-title fade-in-scroll delay-1">Пожелания</h2>
             
             <div class="wishes-container">
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="wish-card fade-in-scroll delay-2">
                     <h3 class="wish-title"><i class="fas fa-gift"></i> Подарки</h3>
                     <p class="wish-text">
                         Мы не хотим утруждать вас выбором подарка, поэтому будем рады вашему вкладу в бюджет нашей молодой семьи. 
@@ -1084,7 +1192,7 @@
                     </p>
                 </div>
                 
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.4s;">
+                <div class="wish-card fade-in-scroll delay-4">
                     <h3 class="wish-title"><i class="fas fa-tshirt"></i> Дресс-код</h3>
                     <p class="wish-text">
                         Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на цветовой гамме:
@@ -1100,7 +1208,8 @@
                         Вы можете выбрать любой из этих оттенков или их гармоничные сочетания.
                     </p>
                 </div>
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.6s;">
+                
+                <div class="wish-card fade-in-scroll delay-6">
                     <h3 class="wish-title"><i class="fas fa-child"></i> Важная информация</h3>
                     <p class="wish-text">
                         К сожалению, в ресторане нет детских зон и нет возможности пригласить аниматоров для самых маленьких гостей. Поэтому просим заранее подумать о том, с кем оставить детей на праздничный вечер.
@@ -1113,22 +1222,22 @@
     <!-- Обратный отсчет на фоне фото -->
     <section class="countdown-section">
         <div class="container">
-            <h3 class="countdown-title">До нашей свадьбы осталось</h3>
+            <h3 class="countdown-title fade-in-scroll delay-1">До нашей свадьбы осталось</h3>
             
             <div class="countdown">
-                <div class="countdown-item">
+                <div class="countdown-item fade-in-scroll delay-2">
                     <span id="days" class="countdown-number">000</span>
                     <span id="days-label" class="countdown-label">Дней</span>
                 </div>
-                <div class="countdown-item">
+                <div class="countdown-item fade-in-scroll delay-3">
                     <span id="hours" class="countdown-number">00</span>
                     <span id="hours-label" class="countdown-label">Часов</span>
                 </div>
-                <div class="countdown-item">
+                <div class="countdown-item fade-in-scroll delay-4">
                     <span id="minutes" class="countdown-number">00</span>
                     <span id="minutes-label" class="countdown-label">Минут</span>
                 </div>
-                <div class="countdown-item">
+                <div class="countdown-item fade-in-scroll delay-5">
                     <span id="seconds" class="countdown-number">00</span>
                     <span id="seconds-label" class="countdown-label">Секунд</span>
                 </div>
@@ -1139,7 +1248,7 @@
     <!-- Форма подтверждения -->
     <section class="form-section">
         <div class="container">
-            <div class="form-container animate-fade-in">
+            <div class="form-container fade-in-scroll delay-1">
                 <h2 class="form-title">Анкета гостя</h2>
                 <p class="form-subtitle">Пожалуйста, заполните форму до 1 августа 2026 года</p>
                 
@@ -1283,15 +1392,15 @@
     <!-- Футер с контактами -->
     <footer class="footer">
         <div class="container">
-            <h3 class="contacts-title">Контакты</h3>
+            <h3 class="contacts-title fade-in-scroll delay-1">Контакты</h3>
             
-            <div class="contact-item">
+            <div class="contact-item fade-in-scroll delay-2">
                 По всем вопросам можете обращаться к нам:
             </div>
-            <div class="contact-item">
+            <div class="contact-item fade-in-scroll delay-3">
                 Артём: +7 (XXX) XXX-XX-XX
             </div>
-            <div class="contact-item">
+            <div class="contact-item fade-in-scroll delay-4">
                 Александра: +7 (XXX) XXX-XX-XX
             </div>
         </div>
@@ -1303,7 +1412,13 @@
             <div class="thank-you-icon">
                 <i class="fas fa-heart"></i>
             </div>
-            <h2 class="thank-you-title">Спасибо за ответ!</h2>
+            <h2 class="thank-you-title" id="thank-you-title">Спасибо за ответ!</h2>
+            <p class="thank-you-text" id="thank-you-text">Мы очень ценим, что вы нашли время ответить на наше приглашение!</p>
+            <div class="thank-you-hearts">
+                <div class="thank-you-heart"><i class="fas fa-heart"></i></div>
+                <div class="thank-you-heart"><i class="fas fa-heart"></i></div>
+                <div class="thank-you-heart"><i class="fas fa-heart"></i></div>
+            </div>
             <button class="thank-you-close" onclick="closeThankYouModal()">Закрыть</button>
         </div>
     </div>
@@ -1392,20 +1507,31 @@
             document.getElementById('seconds-label').textContent = declensionNum(seconds, ['секунда', 'секунды', 'секунд']);
         }
         
-        // Анимация появления элементов при скролле
+        // Функция для проверки видимости элементов при скролле
         function checkScroll() {
-            const elements = document.querySelectorAll('.animate-fade-in');
+            const elements = document.querySelectorAll('.fade-in-scroll');
             const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight * 0.85; // Элемент появляется, когда видно 85% окна
             
             elements.forEach(element => {
-                const position = element.getBoundingClientRect().top;
+                const elementTop = element.getBoundingClientRect().top;
                 
-                if (position < windowHeight - 100) {
+                if (elementTop < triggerPoint) {
                     element.classList.add('visible');
                 }
             });
+            
+            // Кнопка "Наверх"
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 500) {
+                scrollBtn.style.opacity = '1';
+                scrollBtn.style.transform = 'translateY(0)';
+            } else {
+                scrollBtn.style.opacity = '0';
+                scrollBtn.style.transform = 'translateY(20px)';
+            }
         }
-
+        
         // Показать/скрыть блок с информацией о семье
         document.querySelectorAll('input[name="attendance"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -1413,15 +1539,16 @@
                 
                 if (this.value === 'with-family') {
                     familyDetails.style.display = 'block';
-                    familyDetails.classList.add('animate-fade-in');
-                    setTimeout(() => familyDetails.classList.add('visible'), 10);
+                    setTimeout(() => {
+                        familyDetails.style.opacity = '1';
+                        familyDetails.style.transform = 'translateY(0)';
+                    }, 10);
                 } else {
                     familyDetails.style.display = 'none';
-                    familyDetails.classList.remove('visible');
                 }
             });
         });
-
+        
         // Кнопки для выбора количества людей
         document.querySelectorAll('.family-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -1437,7 +1564,7 @@
                 document.getElementById('family-count').value = this.getAttribute('data-count');
             });
         });
-
+        
         // Показать/скрыть поле возраста детей
         document.querySelectorAll('input[name="children"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -1454,42 +1581,204 @@
         // Функция показа модального окна благодарности
         function showThankYouModal() {
             const modal = document.getElementById('thank-you-modal');
+            const title = document.getElementById('thank-you-title');
+            const text = document.getElementById('thank-you-text');
+            
+            // Получаем выбранный вариант ответа
+            const selectedAttendance = document.querySelector('input[name="attendance"]:checked');
+            
+            // Настраиваем сообщение в зависимости от ответа
+            if (selectedAttendance) {
+                switch(selectedAttendance.value) {
+                    case 'yes':
+                        title.textContent = 'Отлично! Ждём вас!';
+                        text.textContent = 'Мы очень рады, что вы сможете разделить с нами этот особенный день!';
+                        break;
+                    case 'with-partner':
+                        title.textContent = 'Прекрасно! Вместе веселее!';
+                        text.textContent = 'Как здорово, что вы придёте со своей парой! Будем ждать вас обоих!';
+                        break;
+                    case 'with-family':
+                        title.textContent = 'Замечательно! Вся семья в сборе!';
+                        text.textContent = 'Мы будем рады видеть всю вашу семью на нашем празднике!';
+                        break;
+                    case 'no':
+                        title.textContent = 'Спасибо за честный ответ';
+                        text.textContent = 'Мы ценим, что вы нашли время сообщить нам. Будем скучать!';
+                        break;
+                    case 'later':
+                        title.textContent = 'Понятно, ждём вашего решения';
+                        text.textContent = 'Надеемся, что вы сможете присоединиться к нашему празднику!';
+                        break;
+                }
+            }
+            
             modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Запретить прокрутку страницы
+            document.body.style.overflow = 'hidden';
+            
+            // Добавляем плавающие сердечки
+            createFloatingHearts();
         }
-
+        
+        // Создание плавающих сердечек в модальном окне
+        function createFloatingHearts() {
+            const modal = document.getElementById('thank-you-modal');
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.style.cssText = `
+                    position: absolute;
+                    color: var(--color3);
+                    font-size: ${Math.random() * 20 + 15}px;
+                    opacity: 0;
+                    z-index: 1;
+                    pointer-events: none;
+                    animation: floatHeart ${Math.random() * 3 + 2}s ease-in-out forwards;
+                `;
+                
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                modal.appendChild(heart);
+                
+                // Удалить сердечко после анимации
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 3000);
+            }
+        }
+        
         // Функция закрытия модального окна благодарности
         function closeThankYouModal() {
             const modal = document.getElementById('thank-you-modal');
             modal.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Разрешить прокрутку страницы
+            document.body.style.overflow = 'auto';
         }
-
+        
         // Закрытие модального окна при клике вне его
         document.getElementById('thank-you-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeThankYouModal();
             }
         });
-
+        
         // Закрытие модального окна при нажатии Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && document.getElementById('thank-you-modal').classList.contains('show')) {
                 closeThankYouModal();
             }
         });
-
+        
         // Обработка формы
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // В реальном проекте здесь был бы AJAX-запрос к серверу
-            // Для демо просто покажем модальное окно благодарности
-            showThankYouModal();
-
-            // Очистка формы
-            this.reset();
+            
+            // Добавляем эффект загрузки на кнопку
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            submitBtn.disabled = true;
+            
+            // Имитация отправки на сервер
+            setTimeout(() => {
+                // Восстанавливаем кнопку
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Показываем модальное окно благодарности
+                showThankYouModal();
+                
+                // Очищаем форму
+                this.reset();
+                
+                // Скрываем блок с семьей если он был открыт
+                document.getElementById('family-details').style.display = 'none';
+                
+                // Сбрасываем активные кнопки семьи
+                document.querySelectorAll('.family-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById('family-count').value = '';
+                
+                // Скрываем возраст детей
+                document.getElementById('children-ages-group').style.display = 'none';
+                
+            }, 800);
         });
+        
+        // Создание кнопки "Наверх"
+        function createScrollToTopButton() {
+            const button = document.createElement('button');
+            button.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            button.className = 'scroll-to-top';
+            button.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                background-color: var(--heart-color);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(195, 145, 134, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            document.body.appendChild(button);
+            
+            // Прокрутка наверх при клике
+            button.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Анимация заголовка при загрузке
+        function animateHeader() {
+            const names = document.querySelectorAll('.name');
+            const date = document.querySelector('.date');
+            
+            // Поочередное появление имен
+            names.forEach((name, index) => {
+                setTimeout(() => {
+                    name.style.opacity = '0';
+                    name.style.transform = 'translateY(20px)';
+                    name.style.transition = 'all 0.8s ease';
+                    
+                    setTimeout(() => {
+                        name.style.opacity = '1';
+                        name.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 300);
+            });
+            
+            // Появление даты
+            setTimeout(() => {
+                date.style.opacity = '0';
+                date.style.transform = 'translateY(20px)';
+                date.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    date.style.opacity = '1';
+                    date.style.transform = 'translateY(0)';
+                }, 100);
+            }, 1000);
+        }
         
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
@@ -1500,9 +1789,23 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
             
-            // Активация анимации при скролле
+            // Анимация заголовка
+            setTimeout(() => {
+                animateHeader();
+            }, 500);
+            
+            // Создание кнопки "Наверх"
+            createScrollToTopButton();
+            
+            // Инициализация анимаций по скроллу
             window.addEventListener('scroll', checkScroll);
-            checkScroll(); // Проверить сразу при загрузке
+            checkScroll(); // Проверить сразу
+            
+            // Показываем элементы в первом экране сразу
+            const headerElements = document.querySelectorAll('.header .fade-in-scroll');
+            headerElements.forEach(el => {
+                el.classList.add('visible');
+            });
         });
     </script>
 </body>
