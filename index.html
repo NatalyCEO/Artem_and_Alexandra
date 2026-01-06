@@ -919,7 +919,7 @@
                 <div class="name">&</div>
                 <div class="name">Александра</div>
             </div>
-            <div class="date animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="date animate-fade-in">
                 22.08.2026
             </div>
         </div>
@@ -930,17 +930,17 @@
         <div class="container">
             <div class="greeting-content">
                 <h2 class="section-title animate-fade-in">Дорогие друзья и родные!</h2>
-                <div class="greeting-text animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="greeting-text animate-fade-in">
                     <p>Вот и наступило время сообщить вам приятное известие — мы женимся!</p>
                     
                     <p>Забудьте обо всех делах, отмените запланированные встречи! Ведь вы ни за что на свете не должны пропустить самое главное торжество нашей жизни — наш первый семейный праздник, который мы были бы счастливы разделить вместе с вами!</p>
                 </div>
                 
-                <div class="quote animate-fade-in" style="animation-delay: 0.4s;">
+                <div class="quote animate-fade-in">
                     Любовь — причина, по которой вы на Земле.
                 </div>
                 
-                <div class="greeting-text animate-fade-in" style="animation-delay: 0.6s;">
+                <div class="greeting-text animate-fade-in">
                     <p>Мы приглашаем вас стать свидетелями начала нашего совместного пути и разделить с нами радость этого особенного дня. Ваше присутствие сделает наш праздник по-настоящему светлым и запоминающимся.</p>
 
                     <p>С любовью, Артём и Александра</p>
@@ -958,7 +958,7 @@
         <div class="container">
             <h2 class="section-title animate-fade-in">Детали мероприятия</h2>
             
-            <div class="calendar-container animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="calendar-container animate-fade-in">
                 <div class="calendar-month">Август 2026</div>
                 
                 <div class="calendar-weekdays">
@@ -976,7 +976,7 @@
                 </div>
             </div>
             
-            <div class="location-container animate-fade-in" style="animation-delay: 0.4s;">
+            <div class="location-container animate-fade-in">
                 <h3 class="location-name">Загородный банкетный комплекс «Лесной»</h3>
                 <p class="location-address">Каштак, ул. Детский санаторий, дом 9</p>
                 
@@ -993,7 +993,7 @@
             <h2 class="section-title animate-fade-in">Пожелания</h2>
             
             <div class="wishes-container">
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="wish-card animate-fade-in">
                     <h3 class="wish-title"><i class="fas fa-gift"></i> Подарки</h3>
                     <p class="wish-text">
                         Мы не хотим утруждать вас выбором подарка, поэтому будем рады вашему вкладу в бюджет нашей молодой семьи. 
@@ -1001,7 +1001,7 @@
                     </p>
                 </div>
                 
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.4s;">
+                <div class="wish-card animate-fade-in">
                     <h3 class="wish-title"><i class="fas fa-tshirt"></i> Дресс-код</h3>
                     <p class="wish-text">
                         Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на цветовой гамме:
@@ -1017,7 +1017,7 @@
                         Вы можете выбрать любой из этих оттенков или их гармоничные сочетания.
                     </p>
                 </div>
-                <div class="wish-card animate-fade-in" style="animation-delay: 0.6s;">
+                <div class="wish-card animate-fade-in">
                     <h3 class="wish-title"><i class="fas fa-child"></i> Важная информация</h3>
                     <p class="wish-text">
                         К сожалению, в ресторане нет детских зон и нет возможности пригласить аниматоров для самых маленьких гостей. Поэтому просим заранее подумать о том, с кем оставить детей на праздничный вечер.
@@ -1305,40 +1305,23 @@
         }
         
         // Анимация появления элементов при скролле
-        let scrollTimeout;
         function checkScroll() {
-            // Throttle для оптимизации производительности
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
+            const elements = document.querySelectorAll('.animate-fade-in:not(.visible)');
+            const windowHeight = window.innerHeight;
 
-            scrollTimeout = setTimeout(() => {
-                const elements = document.querySelectorAll('.animate-fade-in:not(.visible)');
-                const windowHeight = window.innerHeight;
-                const scrollY = window.scrollY;
-                const documentHeight = document.documentElement.scrollHeight;
+            elements.forEach((element, index) => {
+                const rect = element.getBoundingClientRect();
 
-                // Вычисляем прогресс скролла (от 0 до 1)
-                const scrollProgress = scrollY / (documentHeight - windowHeight);
+                // Элемент появляется, когда его верхняя граница находится в нижней половине экрана
+                if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+                    // Добавляем последовательную задержку для каскадного эффекта
+                    const delay = (index % 5) * 150; // Максимум 5 элементов подряд с задержкой 150ms
 
-                elements.forEach((element, index) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.top + scrollY;
-                    const elementProgress = elementTop / documentHeight;
-
-                    // Элемент появляется, когда пользователь докручивает до 70% расстояния до него
-                    const triggerPoint = elementProgress - 0.3;
-
-                    if (scrollProgress >= triggerPoint && rect.top < windowHeight - 50) {
-                        // Добавляем небольшую случайную задержку для более естественного эффекта
-                        const randomDelay = Math.random() * 200 + (index % 3) * 100;
-
-                        setTimeout(() => {
-                            element.classList.add('visible');
-                        }, randomDelay);
-                    }
-                });
-            }, 16); // ~60fps
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, delay);
+                }
+            });
         }
 
         // Показать/скрыть блок с информацией о семье
