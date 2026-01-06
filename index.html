@@ -1305,24 +1305,40 @@
         }
         
         // Анимация появления элементов при скролле
+        let scrollTimeout;
         function checkScroll() {
-            const elements = document.querySelectorAll('.animate-fade-in:not(.visible)');
-            const windowHeight = window.innerHeight;
-            let delayCounter = 0;
+            // Throttle для оптимизации производительности
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
 
-            elements.forEach((element, index) => {
-                const position = element.getBoundingClientRect().top;
+            scrollTimeout = setTimeout(() => {
+                const elements = document.querySelectorAll('.animate-fade-in:not(.visible)');
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                const documentHeight = document.documentElement.scrollHeight;
 
-                if (position < windowHeight - 100) {
-                    // Добавляем постепенную задержку для плавного появления
-                    const delay = delayCounter * 200; // 200ms задержка между элементами
-                    delayCounter++;
+                // Вычисляем прогресс скролла (от 0 до 1)
+                const scrollProgress = scrollY / (documentHeight - windowHeight);
 
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                    }, delay);
-                }
-            });
+                elements.forEach((element, index) => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.top + scrollY;
+                    const elementProgress = elementTop / documentHeight;
+
+                    // Элемент появляется, когда пользователь докручивает до 70% расстояния до него
+                    const triggerPoint = elementProgress - 0.3;
+
+                    if (scrollProgress >= triggerPoint && rect.top < windowHeight - 50) {
+                        // Добавляем небольшую случайную задержку для более естественного эффекта
+                        const randomDelay = Math.random() * 200 + (index % 3) * 100;
+
+                        setTimeout(() => {
+                            element.classList.add('visible');
+                        }, randomDelay);
+                    }
+                });
+            }, 16); // ~60fps
         }
 
         // Показать/скрыть блок с информацией о семье
