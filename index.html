@@ -506,7 +506,7 @@
                         url('counter.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
         }
         
         .countdown-title {
@@ -639,23 +639,6 @@
         
         .radio-input {
             margin-right: 10px;
-        }
-        
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .checkbox-input {
-            margin-right: 8px;
         }
         
         .submit-btn {
@@ -1040,7 +1023,7 @@
                 <div class="wish-card animate-fade-in">
                     <h3 class="wish-title"><i class="fas fa-tshirt"></i> Дресс-код</h3>
                     <p class="wish-text">
-                        Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на гамме: <strong>чёрный</strong>, <strong>коричневый</strong>, <strong>зелёный</strong>, <strong>бежевый</strong>, <strong>розовый</strong> и оттенки <strong>«сливочного масла»</strong> — ниже по несколько оттенков каждого направления.
+                        Чтобы подчеркнуть значимость этого мероприятия, просим остановить выбор на гамме:
                     </p>
                     <div class="color-palette">
                         <!-- Чёрный -->
@@ -1156,7 +1139,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Вам необходим трансфер после мероприятия? *</label>
+                        <label class="form-label">Вам необходим трансфер? *</label>
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="transfer" value="yes" class="radio-input" required>
@@ -1173,32 +1156,6 @@
                             <label class="radio-label">
                                 <input type="radio" name="transfer" value="no" class="radio-input" required>
                                 <span>Нет, доберусь самостоятельно</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Что предпочитаете из напитков?</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="drinks" value="champagne" class="checkbox-input">
-                                <span>Шампанское</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="drinks" value="white-wine" class="checkbox-input">
-                                <span>Вино белое</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="drinks" value="red-wine" class="checkbox-input">
-                                <span>Вино красное</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="drinks" value="rose-wine" class="checkbox-input">
-                                <span>Вино розовое</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="drinks" value="vodka" class="checkbox-input">
-                                <span>Водка</span>
                             </label>
                         </div>
                     </div>
