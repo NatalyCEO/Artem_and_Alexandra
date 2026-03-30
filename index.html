@@ -1142,15 +1142,15 @@
                         <label class="form-label">Вам необходим трансфер? *</label>
                         <div class="radio-group">
                             <label class="radio-label">
-                                <input type="radio" name="transfer" value="yes" class="radio-input" required>
+                                <input type="radio" name="transfer" value="to_event" class="radio-input" required>
                                 <span>Да, необходим трансфер на мероприятие</span>
                             </label>
                             <label class="radio-label">
-                                <input type="radio" name="transfer" value="yes" class="radio-input" required>
+                                <input type="radio" name="transfer" value="after_event" class="radio-input" required>
                                 <span>Да, необходим трансфер после мероприятия</span>
                             </label>
                             <label class="radio-label">
-                                <input type="radio" name="transfer" value="yes" class="radio-input" required>
+                                <input type="radio" name="transfer" value="both" class="radio-input" required>
                                 <span>Да, необходим трансфер и туда, и обратно</span>
                             </label>
                             <label class="radio-label">
@@ -1194,7 +1194,7 @@
                 Александра: +7 (908) 577-76-26
             </div>
             <div class="contact-item">
-                Ведущий: +7 (___) ___-__-__
+                Иван (ведущий): +7 (982) 276-74-02
             </div>
         </div>
     </footer>
@@ -1303,12 +1303,78 @@
             });
         }
 
+        // Вставьте URL веб-приложения Google Apps Script:
+        // Пример: https://script.google.com/macros/s/AKfycb.../exec
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAWnA-BUC5fEBgkZaCRSBhxp9KMfGYouGfxSaeF2MGfurqhbEnj19qbzR-xPSMELcc6g/exec';
+
+        const attendanceLabels = {
+            yes: 'Я с удовольствием приду',
+            no: 'К сожалению, не смогу присутствовать',
+            later: 'Сообщу позже'
+        };
+
+        const transferLabels = {
+            to_event: 'Трансфер на мероприятие',
+            after_event: 'Трансфер после мероприятия',
+            both: 'Трансфер туда и обратно',
+            no: 'Доберусь самостоятельно'
+        };
+
+        async function sendToGoogleSheets(data) {
+            const body = new URLSearchParams(data);
+
+            // First try sendBeacon (no navigation, tolerant to CORS).
+            if (navigator.sendBeacon) {
+                const sent = navigator.sendBeacon(GOOGLE_SCRIPT_URL, body);
+                if (sent) {
+                    return;
+                }
+            }
+
+            // Fallback for browsers where sendBeacon is unavailable/failed.
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body
+            });
+        }
+
         // Обработка формы
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+        document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            const submitButton = this.querySelector('.submit-btn');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка...';
 
             // Получаем значение выбранного варианта присутствия
             const attendanceValue = document.querySelector('input[name="attendance"]:checked').value;
+            const transferValue = document.querySelector('input[name="transfer"]:checked').value;
+
+            const formData = {
+                submittedAt: new Date().toISOString(),
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                attendance: attendanceLabels[attendanceValue] || attendanceValue,
+                transfer: transferLabels[transferValue] || transferValue,
+                message: document.getElementById('message').value.trim()
+            };
+
+            try {
+                if (!GOOGLE_SCRIPT_URL) {
+                    throw new Error('Не указан URL Google Apps Script');
+                }
+
+                await sendToGoogleSheets(formData);
+            } catch (error) {
+                alert('Не удалось отправить данные в Google Таблицу. Проверьте настройки скрипта и повторите попытку.');
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить ответ';
+                return;
+            }
 
             // Определяем текст благодарности в зависимости от выбора
             let thanksText = '';
@@ -1330,6 +1396,9 @@
 
             // Очистка формы
             this.reset();
+
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить ответ';
         });
         
         // Инициализация
